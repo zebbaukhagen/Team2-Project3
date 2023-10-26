@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UnicycleController : MonoBehaviour
+public class UnicycleMovement : MonoBehaviour
 {
-    public float balanceForce = 10f;
+    public float forwardForce = 10.0f; // Force to move the unicycle forward.
+    public float turnForce = 5.0f; // Force to turn the unicycle.
+    public Transform balancePoint; // A transform representing the balance point on the unicycle.
 
     private Rigidbody rb;
-    public float leanSpeed = 3f;
 
     void Start()
     {
@@ -16,17 +17,17 @@ public class UnicycleController : MonoBehaviour
 
     void FixedUpdate()
     {
-        // Get input for leaning forward and backward.
-        float leanInput = Input.GetAxis("Vertical");
+        // Apply forward force to move the unicycle.
+        rb.AddForce(transform.forward * forwardForce);
 
-        // Adjust the unicycle's rotation based on input.
-        transform.Rotate(Vector3.right, leanInput * leanSpeed * Time.deltaTime);
+        // Get input for turning.
+        float turnInput = Input.GetAxis("Horizontal");
 
-        // Calculate the balance force based on the tilt of the unicycle.
-        float tilt = transform.forward.y;
-        Vector3 balanceTorque = Vector3.Cross(transform.up, Physics.gravity) * tilt * balanceForce;
+        // Calculate torque to turn the unicycle.
+        Vector3 turnTorque = balancePoint.up * turnInput * turnForce;
 
-        // Apply the balance force to the unicycle's rigidbody.
-        rb.AddTorque(balanceTorque);
+        // Apply the turning torque to the unicycle's rigidbody.
+        rb.AddTorque(turnTorque);
     }
 }
+
