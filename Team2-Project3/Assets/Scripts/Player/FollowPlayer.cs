@@ -1,25 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class FollowPlayer : MonoBehaviour
+public class FollowPlayerCamera : MonoBehaviour
 {
-    public Transform player; // Reference to the player object.
-    public Vector3 offset = new Vector3(0, 2, -5); // Offset from the player's position.
-    public float smoothSpeed = 5.0f; // The smoothness of the camera movement.
+    public Transform target; // The target to follow (your player's transform).
+    public Vector3 offset = new Vector3(0.0f, 3.0f, 6.5f); // Offset from the target.
+    public float smoothSpeed = 7.5f; // How quickly the camera follows the player.
 
     void LateUpdate()
     {
-        if (player == null)
-        {
-            // If the player object is not assigned, exit the function.
+        if (target == null)
             return;
-        }
 
-        // Calculate the desired position for the camera.
-        Vector3 desiredPosition = player.position + offset;
+        // Calculate the desired camera position based on the target's position and the offset.
+        Vector3 desiredPosition = target.position + offset;
 
-        // Smoothly move the camera towards the desired position.
-        transform.position = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed * Time.deltaTime);
+        // Use SmoothDamp to interpolate the current camera position toward the desired position.
+        Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed * Time.deltaTime);
+
+        // Set the camera's position to the smoothed position.
+        transform.position = smoothedPosition;
+
+        // Make the camera look at the target.
+        transform.LookAt(target);
     }
 }
