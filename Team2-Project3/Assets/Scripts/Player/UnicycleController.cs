@@ -1,22 +1,28 @@
 using UnityEngine;
 
-public class TireMovement : MonoBehaviour
+public class UnicycleController : MonoBehaviour
 {
-    public float moveSpeed = 5.0f;
-    public float turnSpeed = 60.0f;
+    public float speed = 5.0f; // Adjust this to control the object's speed
+    public float rotationSpeed = 90.0f; // Adjust this to control the rotation speed
 
-    void Update()
+    private void Update()
     {
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
-        // Calculate the forward movement based on the local forward vector.
-        float movement = verticalInput * moveSpeed * Time.deltaTime;
-        transform.Translate(Vector3.up * movement);
+        MoveAndRotate(horizontalInput, verticalInput);
+    }
 
-        // Calculate the turn based on horizontal input.
-        float turn = horizontalInput * turnSpeed * Time.deltaTime;
-        transform.Rotate(Vector3.right * turn);
+    private void MoveAndRotate(float horizontalInput, float verticalInput)
+    {
+        // Calculate the rotation change
+        float rotationChange = rotationSpeed * horizontalInput * Time.deltaTime;
+        transform.Rotate(0, rotationChange, 0);
+
+        // Calculate the forward movement
+        Vector3 moveDirection = transform.forward * verticalInput * speed * Time.deltaTime;
+        transform.position += moveDirection;
     }
 }
+
 
