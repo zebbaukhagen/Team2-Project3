@@ -43,7 +43,7 @@ public class UIMainMenuController : MonoBehaviour
 
     public void StartGame()
     {
-        LoadScene("Level 1");
+        LoadScene("Level_1");
         
     }
 
