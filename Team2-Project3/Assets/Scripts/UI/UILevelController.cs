@@ -8,6 +8,7 @@ public class UILevelController : MonoBehaviour
     private static UILevelController instance;
     [SerializeField] private PauseMenu pauseMenu;
     [SerializeField] private GameObject losePanel;
+    [SerializeField] private GameObject winPanel;
 
     public static UILevelController Instance
     {
@@ -32,6 +33,7 @@ public class UILevelController : MonoBehaviour
         settingsMenu.SetActive(false);
         pauseMenuPanel.SetActive(false);
         losePanel.SetActive(false);
+        winPanel.SetActive(false);
         Time.timeScale = 1;
     }
 
@@ -78,7 +80,11 @@ public class UILevelController : MonoBehaviour
     public void NextLevel()
     {
         LoadScene("LevelTwo");
-        OffloadScene("LevelOne");
+    }
+
+    public void ActivateWinPanel()
+    {
+        winPanel.SetActive(true);
     }
 
     public void ActivateLosePanel()

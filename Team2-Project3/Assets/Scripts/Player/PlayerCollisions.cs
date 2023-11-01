@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerCollisions : MonoBehaviour
 {
+    [SerializeField] private UILevelController levelController;
     [SerializeField] Transform respawnPoint;
     private void Awake()
     {
@@ -12,10 +13,11 @@ public class PlayerCollisions : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("KillBox"))
+        if (other.CompareTag("LevelOneComplete"))
         {
-            Debug.Log("Player ate shit");
-            Respawn();
+            Debug.Log("finished level 1");
+            levelController.ActivateWinPanel();
+            
         }
     }
 

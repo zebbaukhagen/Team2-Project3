@@ -4,7 +4,9 @@ public class UnicycleController : MonoBehaviour
 {
     [SerializeField] private float speed = 5.0f; // Adjust this to control the object's speed
     [SerializeField] private float rotationSpeed = 90.0f; // Adjust this to control the rotation speed
-    
+    [SerializeField] private UILevelController levelController;
+    //[SerializeField] private Timer timer;
+
 
 
     private void Update()
@@ -25,6 +27,17 @@ public class UnicycleController : MonoBehaviour
         Vector3 moveDirection = transform.forward * verticalInput * speed * Time.deltaTime;
         transform.position += moveDirection;
     }
+
+
+    //void OnCollisionEnter(Collision collision)
+    //{
+    //    if (collision.gameObject.CompareTag("LevelOneComplete"))
+    //    {
+    //        Debug.Log("you finished!");
+    //        levelController.ActivateWinPanel();
+    //    }
+
+    //}
 }
 
 
