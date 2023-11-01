@@ -2,8 +2,10 @@ using UnityEngine;
 
 public class UnicycleController : MonoBehaviour
 {
-    public float speed = 5.0f; // Adjust this to control the object's speed
-    public float rotationSpeed = 90.0f; // Adjust this to control the rotation speed
+    [SerializeField] private float speed = 5.0f; // Adjust this to control the object's speed
+    [SerializeField] private float rotationSpeed = 90.0f; // Adjust this to control the rotation speed
+    
+
 
     private void Update()
     {
