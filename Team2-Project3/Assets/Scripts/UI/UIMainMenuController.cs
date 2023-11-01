@@ -8,6 +8,7 @@ public class UIMainMenuController : MonoBehaviour
 {
     [SerializeField] private GameObject instructionsPanel;
     [SerializeField] private GameObject settingsMenu;
+    [SerializeField] private GameObject CreditsMenu;
     private static UIMainMenuController instance;
 
     public static UIMainMenuController Instance
@@ -42,7 +43,7 @@ public class UIMainMenuController : MonoBehaviour
 
     public void StartGame()
     {
-        LoadScene("LevelOne");
+        LoadScene("Level 1");
         
     }
 
@@ -54,6 +55,11 @@ public class UIMainMenuController : MonoBehaviour
     public void OpenSettings()
     {
         settingsMenu.SetActive(!settingsMenu.activeSelf);
+    }
+
+    public void OpenCreditPanel()
+    {
+        CreditsMenu.SetActive(!CreditsMenu.activeSelf);
     }
 
     public void QuitGame()
