@@ -5761,6 +5761,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3558949920272957436, guid: 2271c90147edb864c82fdd1f39411f4f,
         type: 3}
+      propertyPath: speed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3558949920272957436, guid: 2271c90147edb864c82fdd1f39411f4f,
+        type: 3}
       propertyPath: timer
       value: 
       objectReference: {fileID: 1047072838}
@@ -5777,7 +5782,7 @@ PrefabInstance:
     - target: {fileID: 6269548207822457966, guid: 2271c90147edb864c82fdd1f39411f4f,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.479
+      value: 0.529
       objectReference: {fileID: 0}
     - target: {fileID: 6269548207822457966, guid: 2271c90147edb864c82fdd1f39411f4f,
         type: 3}
