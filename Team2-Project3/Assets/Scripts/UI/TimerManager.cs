@@ -35,7 +35,7 @@ public class Timer : MonoBehaviour
         }
         if (playerHasTime == false)
         {
-            levelController.ActivateLosePanel();
+            //levelController.ActivateLosePanel();
         }
     }
 
@@ -48,14 +48,14 @@ public class Timer : MonoBehaviour
         timer.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
-    void PlayerRanOutOfTime()
-    {
-        if (!playerHasTime)
-        {
+    //void PlayerRanOutOfTime()
+    //{
+    //    if (!playerHasTime)
+    //    {
 
-        }
+    //    }
 
-    }
+    //}
 
  
 }
