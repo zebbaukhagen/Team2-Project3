@@ -6,33 +6,36 @@ public class UnicycleController : MonoBehaviour
     [SerializeField] private float rotationSpeed = 90.0f; // Adjust this to control the rotation speed
     [SerializeField] private UILevelController levelController;
 
-    private float rotationPower = 5.0f;
-    [SerializeField] private GameObject pivot;
-    Vector3 tiltLeft = new Vector3(0, 0, 5.0f);
-    Vector3 tiltRight = new Vector3(0, 0, -5.0f);
+    private float rotationPower = 7.5f;
+    float tiltPower = -10.0f;
+    float tiltAngle = 0.0f;
+    float horizontalInput = 0.0f;
+    float verticalInput = 0.0f;
+    public bool hasControl = true;
+    
+
     //[SerializeField] private Timer timer;
 
 
 
     void Update()
     {
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
-
-        MoveAndRotate(horizontalInput, verticalInput);
+        if (hasControl)
         {
-            if (Input.GetKeyDown(KeyCode.A))
-            {
-                TiltLeft();
-            }
-            else if(Input.GetKeyDown(KeyCode.D))
-            {
-                TiltRight();
-            }
+            horizontalInput = Input.GetAxis("Horizontal");
+            verticalInput = Input.GetAxis("Vertical");
+
+            MoveAndRotate(horizontalInput, verticalInput);
+
+            Tilt();
+        }
+        else
+        {
+            //transform.rotation = Quaternion.Euler(0, 0, 0);
         }
     }
-     
-    
+
+
 
     private void MoveAndRotate(float horizontalInput, float verticalInput)
     {
@@ -43,28 +46,61 @@ public class UnicycleController : MonoBehaviour
         // Calculate the forward movement
         Vector3 moveDirection = transform.forward * verticalInput * speed * Time.deltaTime;
         transform.position += moveDirection;
+
+
     }
 
-    public void TiltLeft()
-    {
-        pivot.transform.Rotate(rotationPower * tiltLeft * Time.deltaTime);
-    }
-
-    public void TiltRight()
-    {
-        pivot.transform.Rotate(rotationPower * tiltRight * Time.deltaTime);
-    }
-
-
-    //void OnCollisionEnter(Collision collision)
+    //public void TiltLeft()
     //{
-    //    if (collision.gameObject.CompareTag("LevelOneComplete"))
-    //    {
-    //        Debug.Log("you finished!");
-    //        levelController.ActivateWinPanel();
-    //    }
-
+    //    //transform.Rotate(Vector3.right,   rotationPower * tiltPower *  Time.deltaTime);
+    //    //tiltAngle += rotationPower * tiltPower * Time.deltaTime;
+    //    //transform.localRotation = Quaternion.Euler(0.0f, 0.0f, tiltAngle);
+    //    Debug.Log("this is left");
     //}
+
+    //public void TiltRight()
+    //{
+    //    //transform.Rotate(Vector3.right,  rotationPower * -tiltPower *  Time.deltaTime);
+    //    //tiltAngle += rotationPower * tiltPower * Time.deltaTime;
+    //    //transform.localRotation = Quaternion.Euler(0.0f, 0.0f, tiltAngle);
+    //    Debug.Log("this is right");
+    //}
+
+    public void Tilt()
+    {
+        transform.Rotate(Vector3.forward, horizontalInput * rotationPower * tiltPower * Time.deltaTime, Space.Self);
+        Debug.Log(transform.eulerAngles.z);
+        if (transform.eulerAngles.z >= 45 && transform.eulerAngles.z <= 315)
+        {
+            levelController.ActivateLosePanel();
+            transform.rotation = Quaternion.Euler(transform.eulerAngles.x, transform.eulerAngles.y,90);
+            hasControl = false;
+            Debug.Log("player loses");
+        }
+    }
+
+
+
+    //public void PlayerLoses()
+    //{
+    //    if(transform.localRotation.z <= -45 || transform.localRotation.z >= 45)
+    //    {
+    //        levelController.ActivateLosePanel();
+    //    }
+    //}
+
+
+
+
+    void OnTriggerEnter(Collider collider)
+    {
+        if (collider.gameObject.CompareTag("LevelOneComplete"))
+        {
+            Debug.Log("you finished!");
+            levelController.ActivateWinPanel();
+        }
+
+    }
 }
 
 

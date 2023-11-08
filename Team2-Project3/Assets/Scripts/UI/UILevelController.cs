@@ -6,7 +6,7 @@ public class UILevelController : MonoBehaviour
     [SerializeField] private GameObject settingsMenu;
     [SerializeField] private GameObject pauseMenuPanel;
     private static UILevelController instance;
-    [SerializeField] private PauseMenu pauseMenu;
+    //[SerializeField] private PauseMenu pauseMenu;
     [SerializeField] private GameObject losePanel;
     [SerializeField] private GameObject winPanel;
 
@@ -52,7 +52,7 @@ public class UILevelController : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.P))
         {
-            pauseMenu.PauseGame();
+            //pauseMenu.PauseGame();
         }
     }
 

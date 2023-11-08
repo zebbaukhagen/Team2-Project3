@@ -3,40 +3,43 @@ using TMPro;
 
 public class Timer : MonoBehaviour
 {
-    public float countdownTime = 90.0f; // 2 minutes in seconds
+    public float countdownTime = 0.0f; // 2 minutes in seconds
     private float currentTime;
     [SerializeField] private TMP_Text timer;
     [SerializeField] private UILevelController levelController;
     [SerializeField] private bool playerHasTime = true;
-    [SerializeField] private GameObject Unicycle;
+    [SerializeField] private UnicycleController unicycle;
 
 
 
     void Start()
     {
+        unicycle = GameObject.Find("Unicycle").GetComponent<UnicycleController>();
+        
         currentTime = countdownTime;
         UpdateTimerText();
     }
 
     void Update()
     {
-        if (currentTime > 0.0f)
+        if(unicycle.hasControl)
         {
-            currentTime -= Time.deltaTime; // Countdown by the time passed since the last frame
-            UpdateTimerText();
-            playerHasTime = true;
+            if (currentTime >= 0.0f)
+            {
+                currentTime += Time.deltaTime; // Countdown by the time passed since the last frame
+                UpdateTimerText();
+                playerHasTime = true;
 
-        }
-        else if (currentTime <= 0.0f)
-        {
-            timer.text = string.Format("0:00");
-            playerHasTime = false;
+            }
+            else if (currentTime <= 0.0f)
+            {
+                timer.text = string.Format("0:00");
+                playerHasTime = false;
 
+            }
         }
-        if (playerHasTime == false)
-        {
-            //levelController.ActivateLosePanel();
-        }
+        
+      
     }
 
 
@@ -48,14 +51,4 @@ public class Timer : MonoBehaviour
         timer.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
-    //void PlayerRanOutOfTime()
-    //{
-    //    if (!playerHasTime)
-    //    {
-
-    //    }
-
-    //}
-
- 
 }

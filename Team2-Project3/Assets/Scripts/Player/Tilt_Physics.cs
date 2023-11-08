@@ -6,7 +6,6 @@ public class Tilt_Physics : MonoBehaviour
 {
 
     private float rotationPower = 5.0f;
-    [SerializeField] private GameObject pivot ;
     Vector3 tiltLeft = new Vector3(0, 0, 5.0f);
     Vector3 tiltRight = new Vector3(0, 0, -5.0f);
 
@@ -24,11 +23,11 @@ public class Tilt_Physics : MonoBehaviour
 
     public void TiltLeft()
     {
-        pivot.transform.Rotate(rotationPower * tiltLeft * Time.deltaTime);
+        transform.Rotate(rotationPower * tiltLeft * Time.deltaTime);
     }
 
     public void TiltRight()
     {
-        pivot.transform.Rotate(rotationPower * tiltRight * Time.deltaTime);
+        transform.Rotate(rotationPower * tiltRight * Time.deltaTime);
     }
 }
