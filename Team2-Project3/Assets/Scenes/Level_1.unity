@@ -2952,7 +2952,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2.3514404, y: 193}
+  m_AnchoredPosition: {x: 2.3514404, y: 464}
   m_SizeDelta: {x: 294.1, y: 136.132}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &775635738
@@ -7184,6 +7184,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Unicycle
+      objectReference: {fileID: 0}
+    - target: {fileID: 1661148531148686561, guid: 2271c90147edb864c82fdd1f39411f4f,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2085985409222739666, guid: 2271c90147edb864c82fdd1f39411f4f,
+        type: 3}
+      propertyPath: m_Mass
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6269548207822457966, guid: 2271c90147edb864c82fdd1f39411f4f,
         type: 3}

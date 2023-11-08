@@ -49,6 +49,7 @@ MonoBehaviour:
   rotationSpeed: 90
   levelController: {fileID: 0}
   hasControl: 1
+  istiltingRight: 0
 --- !u!1001 &766507538277715852
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -129,15 +130,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 39100857c5433d94f9d52ce5407bec97,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1661148531148686561}
+      addedObject: {fileID: 2085985409222739666}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 39100857c5433d94f9d52ce5407bec97,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1141392875157340916}
+      addedObject: {fileID: 8237346213356018656}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 39100857c5433d94f9d52ce5407bec97,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1543849268281380424}
+      addedObject: {fileID: 8008835069379412514}
   m_SourcePrefab: {fileID: 100100000, guid: 39100857c5433d94f9d52ce5407bec97, type: 3}
 --- !u!1 &460008565508076253 stripped
 GameObject:
@@ -145,7 +146,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 766507538277715852}
   m_PrefabAsset: {fileID: 0}
---- !u!54 &1661148531148686561
+--- !u!54 &2085985409222739666
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -172,7 +173,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!136 &1141392875157340916
+--- !u!136 &8237346213356018656
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -195,7 +196,7 @@ CapsuleCollider:
   m_Height: 0.6
   m_Direction: 0
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1543849268281380424
+--- !u!114 &8008835069379412514
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

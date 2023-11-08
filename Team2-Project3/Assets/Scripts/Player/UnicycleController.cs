@@ -12,6 +12,8 @@ public class UnicycleController : MonoBehaviour
     float horizontalInput = 0.0f;
     float verticalInput = 0.0f;
     public bool hasControl = true;
+    public bool istiltingRight;
+    
     
 
     //[SerializeField] private Timer timer;
@@ -41,7 +43,7 @@ public class UnicycleController : MonoBehaviour
     {
         // Calculate the rotation change
         float rotationChange = rotationSpeed * horizontalInput * Time.deltaTime;
-        transform.Rotate(0, rotationChange, 0);
+        transform.Rotate(0, rotationChange, 0, Space.World);
 
         // Calculate the forward movement
         Vector3 moveDirection = transform.forward * verticalInput * speed * Time.deltaTime;
@@ -70,6 +72,17 @@ public class UnicycleController : MonoBehaviour
     {
         transform.Rotate(Vector3.forward, horizontalInput * rotationPower * tiltPower * Time.deltaTime, Space.Self);
         Debug.Log(transform.eulerAngles.z);
+
+        if(transform.eulerAngles.z >= 0 && transform.eulerAngles.z <= 180)
+        {
+            transform.Rotate(Vector3.forward * Time.deltaTime * -tiltPower, Space.Self);
+        }
+        else
+        {
+            transform.Rotate(-Vector3.forward * Time.deltaTime * -tiltPower, Space.Self);
+        }
+            
+
         if (transform.eulerAngles.z >= 45 && transform.eulerAngles.z <= 315)
         {
             levelController.ActivateLosePanel();
