@@ -12,7 +12,7 @@ public class UnicycleController : MonoBehaviour
     float horizontalInput = 0.0f;
     float verticalInput = 0.0f;
     public bool hasControl = true;
-    public bool istiltingRight;
+   
     
     
 
@@ -30,10 +30,6 @@ public class UnicycleController : MonoBehaviour
             MoveAndRotate(horizontalInput, verticalInput);
 
             Tilt();
-        }
-        else
-        {
-            //transform.rotation = Quaternion.Euler(0, 0, 0);
         }
     }
 
