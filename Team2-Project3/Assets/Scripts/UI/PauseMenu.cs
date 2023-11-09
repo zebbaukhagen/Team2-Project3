@@ -24,29 +24,29 @@ public class PauseMenu : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKey(KeyCode.Escape))
-        {
-            PauseGame();
-        }
-    }
+    //void Update()
+    //{
+    //    if (Input.GetKey(KeyCode.Escape))
+    //    {
+    //        PauseGame();
+    //    }
+    //}
 
-    public void PauseGame()
-    {
-        togglePauseGame = !togglePauseGame;
+    //public void PauseGame()
+    //{
+    //    togglePauseGame = !togglePauseGame;
 
-        if (togglePauseGame == true)
-        {
-            pauseMenu.SetActive(true);
-        }
-        else
-        {
-            togglePauseGame = false;
-            pauseMenu.SetActive(false);
-            Time.timeScale = 1f;
-        }
-    }
+    //    if (togglePauseGame == true)
+    //    {
+    //        pauseMenu.SetActive(true);
+    //    }
+    //    else
+    //    {
+    //        togglePauseGame = false;
+    //        pauseMenu.SetActive(false);
+    //        Time.timeScale = 1f;
+    //    }
+    //}
     
     public void ResumeGame()
     {

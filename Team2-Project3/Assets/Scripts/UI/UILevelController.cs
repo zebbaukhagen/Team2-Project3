@@ -43,7 +43,7 @@ public class UILevelController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-      
+        OpenPauseMenu();
     }
 
     public void OpenSettings()
@@ -61,6 +61,7 @@ public class UILevelController : MonoBehaviour
             {
                 pauseMenuPanel.SetActive(true);
                 unicycle.hasControl = false;
+                Time.timeScale = 0;
 
 
             }
@@ -69,8 +70,17 @@ public class UILevelController : MonoBehaviour
                 isPaused = false;
                 pauseMenuPanel.SetActive(false);
                 unicycle.hasControl = true;
+                Time.timeScale = 1;
             }
         }
+    }
+    
+    public void ResumeGame()
+    {
+        isPaused = false;
+        pauseMenuPanel.SetActive(!pauseMenuPanel.activeSelf);
+        unicycle.hasControl = true;
+        Time.timeScale = 1;
     }
     
 
