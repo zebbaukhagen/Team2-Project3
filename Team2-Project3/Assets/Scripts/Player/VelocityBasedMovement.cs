@@ -169,15 +169,15 @@ public class VelocityBasedMovement : MonoBehaviour
                 characterController.Move(MovementThisFrame);
             }
 
-            if (!grounded && characterController.collisionFlags.HasFlag(CollisionFlags.Below))
-            {
-                grounded = true;
-            }
-            else if(grounded && !characterController.collisionFlags.HasFlag(CollisionFlags.Below))
-            {
-                grounded = false;
-            }
-            if(!grounded && characterController.collisionFlags.HasFlag(CollisionFlags.Sides))
+            //if (!grounded && characterController.collisionFlags.HasFlag(CollisionFlags.Below))
+            //{
+            //    grounded = true;
+            //}
+            //else if(grounded && !characterController.collisionFlags.HasFlag(CollisionFlags.Below))
+            //{
+            //    grounded = false;
+            //}
+            else if(!grounded && characterController.collisionFlags.HasFlag(CollisionFlags.Sides))
             {
                 worldVelocity = (trans.position - predictPosition).normalized * (worldVelocity.magnitude * bounciness);
             }
@@ -204,4 +204,14 @@ public class VelocityBasedMovement : MonoBehaviour
         Jumping();
         ApplyVelocity();
     }
+
+    void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (hit.gameObject.CompareTag("Ground"))
+        {
+            Debug.Log("You Are On The Ground");
+            grounded = true;
+        }
+    }
 }
+
