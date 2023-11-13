@@ -67,17 +67,21 @@ public class UnicycleController : MonoBehaviour
     public void Tilt()
     {
         transform.Rotate(Vector3.forward, horizontalInput * rotationPower * tiltPower * Time.deltaTime, Space.Self);
-        Debug.Log(transform.eulerAngles.z);
+        
+        if(verticalInput == 0)
+        {
+            if (transform.eulerAngles.z >= 0 && transform.eulerAngles.z <= 180)
+            {
+                transform.Rotate(Vector3.forward * Time.deltaTime * -tiltPower, Space.Self);
+            }
+            else
+            {
+                transform.Rotate(-Vector3.forward * Time.deltaTime * -tiltPower, Space.Self);
+            }
 
-        if(transform.eulerAngles.z >= 0 && transform.eulerAngles.z <= 180)
-        {
-            transform.Rotate(Vector3.forward * Time.deltaTime * -tiltPower, Space.Self);
         }
-        else
-        {
-            transform.Rotate(-Vector3.forward * Time.deltaTime * -tiltPower, Space.Self);
-        }
-            
+
+
 
         if (transform.eulerAngles.z >= 45 && transform.eulerAngles.z <= 315)
         {
