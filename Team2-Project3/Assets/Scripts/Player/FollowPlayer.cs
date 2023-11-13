@@ -3,8 +3,8 @@ using UnityEngine;
 public class FollowPlayerCamera : MonoBehaviour
 {
     public Transform target; // The target to follow (your player's transform).
-    public Vector3 offset = new Vector3(0.0f, 3.0f, -6.5f); // Offset from the target.
-    public float smoothSpeed = 7.5f; // How quickly the camera follows the player.
+    public Vector3 offset = new Vector3(0.0f, 0.0f, 0.0f); // Offset from the target.
+    public float smoothSpeed = 10.0f; // How quickly the camera follows the player.
 
     void LateUpdate()
     {
