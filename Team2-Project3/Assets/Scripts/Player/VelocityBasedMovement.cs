@@ -20,7 +20,7 @@ public class VelocityBasedMovement : MonoBehaviour
     public float moveSpeed = 10.0f;
    
     //movement direction local to the holders direction
-    float tiltPower = -7.5f;
+    float tiltPower = -20.0f;
     float counterTilt = 6.0f;
 
 
@@ -32,7 +32,7 @@ public class VelocityBasedMovement : MonoBehaviour
 
     void Movement()
     {
-        float downforce = -.5f;
+        float downforce = -1.5f;
         Vector3 movement = transform.forward * Input.GetAxis("Vertical");
         movement.y = downforce;
         characterController.Move(movement * Time.deltaTime * moveSpeed);
