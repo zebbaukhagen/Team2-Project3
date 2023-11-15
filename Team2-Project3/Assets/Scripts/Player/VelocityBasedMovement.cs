@@ -10,6 +10,7 @@ public class VelocityBasedMovement : MonoBehaviour
     /// </summary>
     public Transform modelHolder;
     public CharacterController characterController;
+    public bool playerCanMove = true;
 
   
 
@@ -32,35 +33,58 @@ public class VelocityBasedMovement : MonoBehaviour
 
     void Movement()
     {
-        float downforce = -1.5f;
-        Vector3 movement = transform.forward * Input.GetAxis("Vertical");
-        movement.y = downforce;
-        characterController.Move(movement * Time.deltaTime * moveSpeed);
-        
+        if (playerCanMove)
+        {
+            float downforce = -1.5f;
+            Vector3 movement = transform.forward * Input.GetAxis("Vertical");
+            movement.y = downforce;
+            characterController.Move(movement * Time.deltaTime * moveSpeed);
+        }
     }
+        
+    
 
     public void Tilt()
     {
-        modelHolder.Rotate(0.0f, 0.0f, Input.GetAxis("Horizontal") * tiltPower * Time.deltaTime * counterTilt, Space.Self);
-        Debug.Log(characterController.velocity);
-
-        if (Input.GetAxis("Vertical") == 0)
+        if (playerCanMove)
         {
-            if (modelHolder.localRotation.z >= 0)
+            modelHolder.Rotate(0.0f, 0.0f, Input.GetAxis("Horizontal") * tiltPower * Time.deltaTime * counterTilt, Space.Self);
+            Debug.Log(characterController.velocity);
+
+            if (Input.GetAxis("Vertical") == 0)
             {
-                modelHolder.Rotate(0.0f, 0.0f, -tiltPower * Time.deltaTime, Space.Self);
-            }
-            else
-            {
-                modelHolder.Rotate(0.0f, 0.0f, tiltPower * Time.deltaTime, Space.Self);
+                if (modelHolder.localRotation.z >= 0)
+                {
+                    modelHolder.Rotate(0.0f, 0.0f, -tiltPower * Time.deltaTime, Space.Self);
+                }
+                else
+                {
+                    modelHolder.Rotate(0.0f, 0.0f, tiltPower * Time.deltaTime, Space.Self);
+                }
+                if (modelHolder.localRotation.z >= 45 && modelHolder.localRotation.z <= 315)
+                {
+                    PlayerFallsOver();
+                }
             }
         }
     }
 
+    public void PlayerFallsOver()
+    {
+        transform.rotation = Quaternion.Euler(modelHolder.localRotation.x, modelHolder.localRotation.y, 90);
+        playerCanMove = false;
+        Debug.Log("player loses");
+    }
+
+
+
     public void RotateUnicycle()
     {
-        float rotationChange = rotationSpeed * Input.GetAxis("Horizontal") * Time.deltaTime;
-        transform.Rotate(Vector3.up, rotationChange, Space.Self);   
+        if (playerCanMove)
+        {
+            float rotationChange = rotationSpeed * Input.GetAxis("Horizontal") * Time.deltaTime;
+            transform.Rotate(Vector3.up, rotationChange, Space.Self);
+        }
     }
 
     // Start is called before the first frame update
