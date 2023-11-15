@@ -5571,7 +5571,7 @@ MonoBehaviour:
   timer: {fileID: 775635738}
   levelController: {fileID: 1047072837}
   playerHasTime: 1
-  unicycle: {fileID: 0}
+  playerMovement: {fileID: 0}
 --- !u!114 &1047072839
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5585,7 +5585,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 464604966}
-  settingsMenu: {fileID: 0}
   uiController: {fileID: 1047072837}
 --- !u!1001 &1059950593
 PrefabInstance:
@@ -10868,7 +10867,8 @@ PrefabInstance:
       propertyPath: characterController
       value: 
       objectReference: {fileID: 239547604}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 9052590800631419736, guid: 2271c90147edb864c82fdd1f39411f4f, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

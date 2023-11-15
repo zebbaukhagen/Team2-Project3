@@ -5,11 +5,11 @@ using UnityEngine;
 public class WinScript : MonoBehaviour
 {
     [SerializeField] private UILevelController levelController;
-    [SerializeField] private UnicycleController unicycleController;
+    [SerializeField] private VelocityBasedMovement playerMovement;
 
     void Start()
     {
-        unicycleController = GameObject.Find("Unicycle").GetComponent<UnicycleController>();
+        //unicycleController = GameObject.Find("Unicycle").GetComponent<UnicycleController>();
         levelController = GameObject.Find("Canvas").GetComponent<UILevelController>();
     }
 
@@ -19,8 +19,6 @@ public class WinScript : MonoBehaviour
         {
             Debug.Log("you finished!");
             levelController.ActivateWinPanel();
-            unicycleController.hasControl = false;
         }
-
     }
 }

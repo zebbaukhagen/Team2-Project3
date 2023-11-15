@@ -9,10 +9,10 @@ public class PauseMenu : MonoBehaviour
 {
     //[SerializeField] private PlayerController playerController;
     [SerializeField] private GameObject pauseMenu;
-    [SerializeField] private GameObject settingsMenu;
+    //[SerializeField] private GameObject settingsMenu;
     //[SerializeField] private TMP_Text levelPrompt;
     [SerializeField] private UILevelController uiController;
-    [SerializeField] private static bool togglePauseGame;
+    private static bool togglePauseGame;
     [SerializeField] private static bool pauseGame;
     //[SerializeField] private AudioManager audio;
     
@@ -20,7 +20,7 @@ public class PauseMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        settingsMenu.SetActive(false);
+        //settingsMenu.SetActive(false);
     }
 
     // Update is called once per frame
@@ -56,7 +56,7 @@ public class PauseMenu : MonoBehaviour
 
     public void OpenSettings()
     {
-        settingsMenu.SetActive(!settingsMenu.activeSelf);
+        //settingsMenu.SetActive(!settingsMenu.activeSelf);
     }
 
     public void BackToMainMenu()

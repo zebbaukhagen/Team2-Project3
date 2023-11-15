@@ -8,13 +8,13 @@ public class Timer : MonoBehaviour
     [SerializeField] private TMP_Text timer;
     [SerializeField] private UILevelController levelController;
     [SerializeField] private bool playerHasTime = true;
-    [SerializeField] private UnicycleController unicycle;
+    [SerializeField] private VelocityBasedMovement playerMovement;
 
 
 
     void Start()
     {
-        unicycle = GameObject.Find("Unicycle").GetComponent<UnicycleController>();
+        playerMovement = GameObject.Find("Unicycle").GetComponent<VelocityBasedMovement>();
         
         currentTime = countdownTime;
         UpdateTimerText();
@@ -22,7 +22,7 @@ public class Timer : MonoBehaviour
 
     void Update()
     {
-        if(unicycle.hasControl)
+        if(playerMovement.playerCanMove)
         {
             if (currentTime >= 0.0f)
             {
