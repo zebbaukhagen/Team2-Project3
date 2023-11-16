@@ -61,7 +61,7 @@ public class UILevelController : MonoBehaviour
             {
                 pauseMenuPanel.SetActive(true);
                 playerMovement.playerCanMove = false;
-                Time.timeScale = 0;
+                
 
 
             }
@@ -70,7 +70,7 @@ public class UILevelController : MonoBehaviour
                 isPaused = false;
                 pauseMenuPanel.SetActive(false);
                 playerMovement.playerCanMove = true;
-                Time.timeScale = 1;
+                
             }
         }
     }
@@ -79,8 +79,8 @@ public class UILevelController : MonoBehaviour
     {
         isPaused = false;
         pauseMenuPanel.SetActive(!pauseMenuPanel.activeSelf);
-        playerMovement.playerCanMove = false;
-        Time.timeScale = 1;
+        playerMovement.playerCanMove = true;
+        
     }
     
 
