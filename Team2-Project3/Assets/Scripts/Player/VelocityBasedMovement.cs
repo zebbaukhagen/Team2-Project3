@@ -26,7 +26,7 @@ public class VelocityBasedMovement : MonoBehaviour
     float tiltPower = -15.0f;
     float counterTilt = 6.0f;
 
-    bool playerHasFallen = false;
+    public bool playerHasFallen = false;
 
 
 
@@ -81,9 +81,9 @@ public class VelocityBasedMovement : MonoBehaviour
     {
         if(modelHolder.eulerAngles.z >= 50 && modelHolder.eulerAngles.z <= 300)
         {
-            playerHasFallen = true;
             playerCanMove = false;
             levelController.ActivateLosePanel();
+            playerHasFallen = true;
         }
     }
 

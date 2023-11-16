@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
@@ -8,7 +9,6 @@ public class Timer : MonoBehaviour
     [SerializeField] private TMP_Text timer;
     [SerializeField] private TMP_Text failed;
     [SerializeField] private UILevelController levelController;
-    [SerializeField] private bool playerHasTime = true;
     [SerializeField] private VelocityBasedMovement playerMovement;
 
 
@@ -29,13 +29,12 @@ public class Timer : MonoBehaviour
             {
                 currentTime += Time.deltaTime; // Countdown by the time passed since the last frame
                 UpdateTimerText();
-                playerHasTime = true;
 
             }
-            else if (playerMovement.playerHasFallen == true)
+            else if (playerMovement.playerCanMove == false && playerMovement.playerHasFallen == true)
             {
+                Debug.Log("player has fallen");
                 failed.text = "Time: " + Mathf.Max(0, Mathf.Ceil(currentTime));
-                playerHasTime = false;
 
             }
         }
