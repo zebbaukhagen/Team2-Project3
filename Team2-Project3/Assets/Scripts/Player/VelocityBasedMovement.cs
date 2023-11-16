@@ -43,14 +43,14 @@ public class VelocityBasedMovement : MonoBehaviour
             movement.y = downforce;
             characterController.Move(movement * Time.deltaTime * moveSpeed);
         }
-        else if(playerCanMove && SceneManager.GetActiveScene().name == "Level_3")
-        {
-            float moonGravity = -0.01f;
+        //else if(playerCanMove && SceneManager.GetActiveScene().name == "Level_3")
+        //{
+        //    float moonGravity = -0.01f;
 
-            Vector3 movement = transform.forward * Input.GetAxis("Vertical");
-            movement.y = moonGravity;
-            characterController.Move(movement * Time.deltaTime * moveSpeed);
-        }
+        //    Vector3 movement = transform.forward * Input.GetAxis("Vertical");
+        //    movement.y = moonGravity;
+        //    characterController.Move(movement * Time.deltaTime * moveSpeed);
+        //}
     }
 
 
