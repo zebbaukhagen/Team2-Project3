@@ -6,6 +6,7 @@ public class Timer : MonoBehaviour
     public float countdownTime = 0.0f; // 2 minutes in seconds
     private float currentTime;
     [SerializeField] private TMP_Text timer;
+    [SerializeField] private TMP_Text failed;
     [SerializeField] private UILevelController levelController;
     [SerializeField] private bool playerHasTime = true;
     [SerializeField] private VelocityBasedMovement playerMovement;
@@ -31,9 +32,9 @@ public class Timer : MonoBehaviour
                 playerHasTime = true;
 
             }
-            else if (currentTime <= 0.0f)
+            else if (playerMovement.playerHasFallen == true)
             {
-                timer.text = string.Format("0:00");
+                failed.text = "Time: " + Mathf.Max(0, Mathf.Ceil(currentTime));
                 playerHasTime = false;
 
             }

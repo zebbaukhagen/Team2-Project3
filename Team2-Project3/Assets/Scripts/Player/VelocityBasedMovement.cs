@@ -26,6 +26,8 @@ public class VelocityBasedMovement : MonoBehaviour
     float tiltPower = -15.0f;
     float counterTilt = 6.0f;
 
+    bool playerHasFallen = false;
+
 
 
 
@@ -79,11 +81,9 @@ public class VelocityBasedMovement : MonoBehaviour
     {
         if(modelHolder.eulerAngles.z >= 50 && modelHolder.eulerAngles.z <= 300)
         {
-            Debug.Log("Player Has Fallen");
+            playerHasFallen = true;
             playerCanMove = false;
             levelController.ActivateLosePanel();
-            //transform.rotation = Quaternion.Euler(modelHolder.localRotation.x, modelHolder.localRotation.y, 90);
-            Debug.Log("player loses");
         }
     }
 
