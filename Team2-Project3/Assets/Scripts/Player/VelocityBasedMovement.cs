@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class VelocityBasedMovement : MonoBehaviour
 {
@@ -37,8 +38,17 @@ public class VelocityBasedMovement : MonoBehaviour
         if (playerCanMove)
         {
             float downforce = -1.5f;
+            
             Vector3 movement = transform.forward * Input.GetAxis("Vertical");
             movement.y = downforce;
+            characterController.Move(movement * Time.deltaTime * moveSpeed);
+        }
+        else if(playerCanMove && SceneManager.GetActiveScene().name == "Level_3")
+        {
+            float moonGravity = -0.01f;
+
+            Vector3 movement = transform.forward * Input.GetAxis("Vertical");
+            movement.y = moonGravity;
             characterController.Move(movement * Time.deltaTime * moveSpeed);
         }
     }
