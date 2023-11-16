@@ -50,7 +50,8 @@ MonoBehaviour:
   modelHolder: {fileID: 1670384747533881512}
   characterController: {fileID: 416072074563915033}
   playerCanMove: 1
-  rotationSpeed: 50
+  levelController: {fileID: 0}
+  rotationSpeed: 75
   moveSpeed: 10
 --- !u!143 &416072074563915033
 CharacterController:
@@ -418,8 +419,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 351a60a3af912354b9a72b504a2a004b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelController: {fileID: 0}
-  playerMovement: {fileID: 0}
 --- !u!4 &3637105944216794688 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2512243300098982147, guid: db53dc0059fc0a6448577dbdf8387067,

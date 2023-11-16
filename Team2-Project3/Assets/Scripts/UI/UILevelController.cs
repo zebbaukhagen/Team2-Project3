@@ -105,7 +105,14 @@ public class UILevelController : MonoBehaviour
 
     public void NextLevel()
     {
-        LoadScene("LevelTwo");
+        if (SceneManager.GetActiveScene().name == "Level_1")
+        {
+            LoadScene("Level_2");
+        }
+        else if (SceneManager.GetActiveScene().name == "Level_2")
+        {
+            LoadScene("Level_3");
+        }
     }
 
     public void ActivateWinPanel()
