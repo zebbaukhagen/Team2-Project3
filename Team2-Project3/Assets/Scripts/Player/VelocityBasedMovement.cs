@@ -23,7 +23,7 @@ public class VelocityBasedMovement : MonoBehaviour
     public float moveSpeed = 10.0f;
    
     //movement direction local to the holders direction
-    float tiltPower = -20.0f;
+    float tiltPower = -15.0f;
     float counterTilt = 6.0f;
 
 
