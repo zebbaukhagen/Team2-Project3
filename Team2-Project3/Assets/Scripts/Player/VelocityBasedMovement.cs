@@ -19,14 +19,15 @@ public class VelocityBasedMovement : MonoBehaviour
     /// <summary>
     /// Movement
     /// </summary>
-    public float rotationSpeed = 75.0f; // Adjust this to control the rotation speed
-    public float moveSpeed = 10.0f;
+    public float rotationSpeed = 50.0f; // Adjust this to control the rotation speed
+    public float moveSpeed = 5.0f;
    
     //movement direction local to the holders direction
-    float tiltPower = -15.0f;
-    float counterTilt = 6.0f;
+    float tiltPower = -20.0f;
+    float counterTilt = 4.0f;
 
     public bool playerHasFallen = false;
+    public bool isGrounded = true;
 
 
 
@@ -39,13 +40,21 @@ public class VelocityBasedMovement : MonoBehaviour
     {
         if (playerCanMove)
         {
-            float downforce = -1.5f;
+            float downforce = -0.75f;
+            //float secondaryForce = 0.75f;
             
             Vector3 movement = transform.forward * Input.GetAxis("Vertical");
             movement.y = downforce;
+            //movement.x = secondaryForce;
             characterController.Move(movement * Time.deltaTime * moveSpeed);
+
+            if(isGrounded == false)
+            {
+                Debug.Log("Gravity is increasing");
+                downforce += .1f;
+            }
         }
-        //else if(playerCanMove && SceneManager.GetActiveScene().name == "Level_3")
+        //else if (playerCanMove && SceneManager.GetActiveScene().name == "Level_3")
         //{
         //    float moonGravity = -0.01f;
 
@@ -89,6 +98,8 @@ public class VelocityBasedMovement : MonoBehaviour
 
 
 
+
+
     public void RotateUnicycle()
     {
         if (playerCanMove)
@@ -97,6 +108,7 @@ public class VelocityBasedMovement : MonoBehaviour
             transform.Rotate(Vector3.up, rotationChange, Space.Self);
         }
     }
+
 
     // Start is called before the first frame update
     void Start()
@@ -112,5 +124,18 @@ public class VelocityBasedMovement : MonoBehaviour
         Tilt();
         PlayerFallsOver();
     }
+
+    void OnTriggerEnter(Collider other)
+    {
+        // Check if the trigger involves a specific tag
+        if (other.gameObject.tag == "Ground")
+        {
+            playerCanMove = true;
+            isGrounded = true;
+            
+        }
+    }
 }
+
+
 
