@@ -11,7 +11,7 @@ public class VelocityBasedMovement : MonoBehaviour
     public Transform modelHolder;
     public CharacterController characterController;
     public bool playerCanMove = true;
-    private UILevelController levelController;
+    [SerializeField] private UILevelController levelController;
 
   
 
@@ -42,15 +42,14 @@ public class VelocityBasedMovement : MonoBehaviour
             characterController.Move(movement * Time.deltaTime * moveSpeed);
         }
     }
-        
-    
+
+
 
     public void Tilt()
     {
         if (playerCanMove)
         {
             modelHolder.Rotate(0.0f, 0.0f, Input.GetAxis("Horizontal") * tiltPower * Time.deltaTime * counterTilt, Space.Self);
-          
 
             if (Input.GetAxis("Vertical") == 0)
             {
@@ -62,21 +61,20 @@ public class VelocityBasedMovement : MonoBehaviour
                 {
                     modelHolder.Rotate(0.0f, 0.0f, tiltPower * Time.deltaTime, Space.Self);
                 }
-                if (modelHolder.localRotation.z == 70 || modelHolder.localRotation.z == -70)
-                {
-                    PlayerFallsOver();
-                }
             }
         }
     }
 
     public void PlayerFallsOver()
     {
-        playerCanMove = false;
-        levelController.ActivateLosePanel();
-        //transform.rotation = Quaternion.Euler(modelHolder.localRotation.x, modelHolder.localRotation.y, 90);
-        
-        Debug.Log("player loses");
+        if(modelHolder.eulerAngles.z >= 50 && modelHolder.eulerAngles.z <= 300)
+        {
+            Debug.Log("Player Has Fallen");
+            playerCanMove = false;
+            levelController.ActivateLosePanel();
+            //transform.rotation = Quaternion.Euler(modelHolder.localRotation.x, modelHolder.localRotation.y, 90);
+            Debug.Log("player loses");
+        }
     }
 
 
@@ -102,6 +100,7 @@ public class VelocityBasedMovement : MonoBehaviour
         Movement();
         RotateUnicycle();
         Tilt();
+        PlayerFallsOver();
     }
 }
 

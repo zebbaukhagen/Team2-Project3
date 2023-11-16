@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6269548207822457966}
-  - component: {fileID: 9052590800631419736}
   - component: {fileID: 7754619145462661200}
   - component: {fileID: 416072074563915033}
   m_Layer: 0
@@ -36,22 +35,6 @@ Transform:
   - {fileID: 5109871056580483622}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0.008, y: 1.956, z: -0.249}
---- !u!114 &9052590800631419736
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 537968413838775125}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7283110025f47374aa773b6cba101fe2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 5
-  rotationSpeed: 90
-  levelController: {fileID: 0}
-  hasControl: 1
 --- !u!114 &7754619145462661200
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -64,19 +47,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a0bc8e886726d4438c2cfa854ee2009, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trans: {fileID: 6269548207822457966}
   modelHolder: {fileID: 1670384747533881512}
   characterController: {fileID: 416072074563915033}
+  playerCanMove: 1
   rotationSpeed: 50
   moveSpeed: 10
-  timeToMaxSpeed: 0.3
-  timeToLoseMaxSpeed: 0.2
-  reverseMomentumMultiplier: 0.6
-  midairMovementMultiplier: 0.4
-  bounciness: 0.2
-  grounded: 0
-  springArm: {fileID: 7585825891433948492}
-  jumpPower: 76
 --- !u!143 &416072074563915033
 CharacterController:
   m_ObjectHideFlags: 0
@@ -444,7 +419,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelController: {fileID: 0}
-  unicycleController: {fileID: 0}
+  playerMovement: {fileID: 0}
 --- !u!4 &3637105944216794688 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2512243300098982147, guid: db53dc0059fc0a6448577dbdf8387067,

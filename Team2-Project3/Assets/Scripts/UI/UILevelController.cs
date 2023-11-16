@@ -3,13 +3,13 @@ using UnityEngine.SceneManagement;
 
 public class UILevelController : MonoBehaviour
 {
-    [SerializeField] private GameObject settingsMenu;
+    //[SerializeField] private GameObject settingsMenu;
     [SerializeField] private GameObject pauseMenuPanel;
     private static UILevelController instance;
     [SerializeField] private GameObject losePanel;
     [SerializeField] private GameObject winPanel;
     public bool isPaused = false;
-    [SerializeField] private UnicycleController unicycle;
+    [SerializeField] private VelocityBasedMovement playerMovement;
 
     public static UILevelController Instance
     {
@@ -31,12 +31,12 @@ public class UILevelController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        settingsMenu.SetActive(false);
+        //settingsMenu.SetActive(false);
         pauseMenuPanel.SetActive(false);
         losePanel.SetActive(false);
         winPanel.SetActive(false);
         Time.timeScale = 1;
-        unicycle = GameObject.Find("Unicycle").GetComponent<UnicycleController>();
+        playerMovement = GameObject.Find("Unicycle").GetComponent<VelocityBasedMovement>();
 
     }
 
@@ -48,7 +48,7 @@ public class UILevelController : MonoBehaviour
 
     public void OpenSettings()
     {
-        settingsMenu.SetActive(!settingsMenu.activeSelf);
+        //settingsMenu.SetActive(!settingsMenu.activeSelf);
     }
 
     public void OpenPauseMenu()
@@ -60,7 +60,7 @@ public class UILevelController : MonoBehaviour
             if (isPaused == true)
             {
                 pauseMenuPanel.SetActive(true);
-                unicycle.hasControl = false;
+                playerMovement.playerCanMove = false;
                 Time.timeScale = 0;
 
 
@@ -69,7 +69,7 @@ public class UILevelController : MonoBehaviour
             {
                 isPaused = false;
                 pauseMenuPanel.SetActive(false);
-                unicycle.hasControl = true;
+                playerMovement.playerCanMove = true;
                 Time.timeScale = 1;
             }
         }
@@ -79,7 +79,7 @@ public class UILevelController : MonoBehaviour
     {
         isPaused = false;
         pauseMenuPanel.SetActive(!pauseMenuPanel.activeSelf);
-        unicycle.hasControl = true;
+        playerMovement.playerCanMove = false;
         Time.timeScale = 1;
     }
     

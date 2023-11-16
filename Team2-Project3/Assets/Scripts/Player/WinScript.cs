@@ -4,20 +4,22 @@ using UnityEngine;
 
 public class WinScript : MonoBehaviour
 {
-    [SerializeField] private UILevelController levelController;
-    [SerializeField] private VelocityBasedMovement playerMovement;
+    private UILevelController levelController;
+    private VelocityBasedMovement playerMovement;
+    
 
     void Start()
     {
-        //unicycleController = GameObject.Find("Unicycle").GetComponent<UnicycleController>();
         levelController = GameObject.Find("Canvas").GetComponent<UILevelController>();
+        playerMovement = GameObject.Find("Unicycle").GetComponent<VelocityBasedMovement>();
     }
 
-    void OnTriggerEnter(Collider collider)
+    void OnTriggerEnter(Collider other)
     {
-        if (collider.gameObject.CompareTag("LevelOneComplete"))
+        // Check if the trigger involves a specific tag
+        if (other.gameObject.tag == "LevelOneComplete")
         {
-            Debug.Log("you finished!");
+            playerMovement.playerCanMove = false;
             levelController.ActivateWinPanel();
         }
     }
