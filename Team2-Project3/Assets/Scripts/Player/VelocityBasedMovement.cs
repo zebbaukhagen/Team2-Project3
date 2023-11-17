@@ -27,7 +27,7 @@ public class VelocityBasedMovement : MonoBehaviour
     float counterTilt = 4.0f;
 
     public bool playerHasFallen = false;
-    public bool isGrounded = true;
+    
 
 
 
@@ -48,10 +48,15 @@ public class VelocityBasedMovement : MonoBehaviour
             //movement.x = secondaryForce;
             characterController.Move(movement * Time.deltaTime * moveSpeed);
 
-            if(isGrounded == false)
+            if(characterController.isGrounded == false)
             {
-                Debug.Log("Gravity is increasing");
-                downforce += .1f;
+                
+                if(characterController.velocity.y < 0)
+                {
+                    Debug.Log("Gravity is about to increase");
+                    downforce += 20.0f * Time.deltaTime;
+                    Debug.Log(downforce);
+                }
             }
         }
         //else if (playerCanMove && SceneManager.GetActiveScene().name == "Level_3")
@@ -123,17 +128,6 @@ public class VelocityBasedMovement : MonoBehaviour
         RotateUnicycle();
         Tilt();
         PlayerFallsOver();
-    }
-
-    void OnTriggerEnter(Collider other)
-    {
-        // Check if the trigger involves a specific tag
-        if (other.gameObject.tag == "Ground")
-        {
-            playerCanMove = true;
-            isGrounded = true;
-            
-        }
     }
 }
 
