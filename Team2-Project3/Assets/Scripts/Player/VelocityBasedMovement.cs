@@ -19,14 +19,15 @@ public class VelocityBasedMovement : MonoBehaviour
     /// <summary>
     /// Movement
     /// </summary>
-    public float rotationSpeed = 50.0f; // Adjust this to control the rotation speed
+    public float rotationSpeed = 200.0f; // Adjust this to control the rotation speed
     public float moveSpeed = 5.0f;
    
     //movement direction local to the holders direction
-    float tiltPower = -20.0f;
-    float counterTilt = 4.0f;
+    float tiltPower = -10.0f;
+    float counterTilt = 2.0f;
 
     public bool playerHasFallen = false;
+    
     
 
 
@@ -41,6 +42,7 @@ public class VelocityBasedMovement : MonoBehaviour
         if (playerCanMove)
         {
             float downforce = -0.75f;
+            bool increasingGravity = false;
             //float secondaryForce = 0.75f;
             
             Vector3 movement = transform.forward * Input.GetAxis("Vertical");
@@ -53,12 +55,23 @@ public class VelocityBasedMovement : MonoBehaviour
                 
                 if(characterController.velocity.y < 0)
                 {
-                    Debug.Log("Gravity is about to increase");
-                    downforce += 20.0f * Time.deltaTime;
-                    Debug.Log(downforce);
+                    downforce += 5.0f * Time.deltaTime;
+                    increasingGravity = true;
                 }
             }
+            else
+            {
+                // If the player is grounded, reset the downforce and the flag
+                downforce = -0.75f;
+                increasingGravity = false;
+            }
+            if (increasingGravity)
+            {
+                movement.y = downforce;
+                characterController.Move(movement * Time.deltaTime * moveSpeed);
+            }
         }
+    }
         //else if (playerCanMove && SceneManager.GetActiveScene().name == "Level_3")
         //{
         //    float moonGravity = -0.01f;
@@ -67,7 +80,7 @@ public class VelocityBasedMovement : MonoBehaviour
         //    movement.y = moonGravity;
         //    characterController.Move(movement * Time.deltaTime * moveSpeed);
         //}
-    }
+    
 
 
 
@@ -77,8 +90,8 @@ public class VelocityBasedMovement : MonoBehaviour
         {
             modelHolder.Rotate(0.0f, 0.0f, Input.GetAxis("Horizontal") * tiltPower * Time.deltaTime * counterTilt, Space.Self);
 
-            if (Input.GetAxis("Vertical") == 0)
-            {
+            //if (Input.GetAxis("Vertical") == 0)
+            //{
                 if (modelHolder.localRotation.z >= 0)
                 {
                     modelHolder.Rotate(0.0f, 0.0f, -tiltPower * Time.deltaTime, Space.Self);
@@ -87,7 +100,7 @@ public class VelocityBasedMovement : MonoBehaviour
                 {
                     modelHolder.Rotate(0.0f, 0.0f, tiltPower * Time.deltaTime, Space.Self);
                 }
-            }
+            
         }
     }
 
