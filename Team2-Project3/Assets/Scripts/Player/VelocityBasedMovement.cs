@@ -27,8 +27,8 @@ public class VelocityBasedMovement : MonoBehaviour
     float counterTilt = 2.0f;
 
     public bool playerHasFallen = false;
-    
-    
+
+
 
 
 
@@ -47,17 +47,18 @@ public class VelocityBasedMovement : MonoBehaviour
 
             Vector3 forwardDirection = modelHolder.forward;
             forwardDirection.y = 0.0f;
-            
+
             Vector3 movement = forwardDirection * Input.GetAxis("Vertical");
             movement.y = downforce;
             //movement.x = secondaryForce;
             characterController.Move(movement * Time.deltaTime * moveSpeed);
 
-            if(!characterController.isGrounded)
+            if (!characterController.isGrounded)
             {
-                if(characterController.velocity.y < 0)
+                if (characterController.velocity.y < 0)
                 {
                     downforce -= 5.0f * Time.deltaTime;
+                    Debug.Log(downforce);
                     increasingGravity = true;
                 }
             }
@@ -67,13 +68,10 @@ public class VelocityBasedMovement : MonoBehaviour
                 downforce = -0.75f;
                 increasingGravity = false;
             }
-            if (increasingGravity)
-            {
-                movement.y = downforce;
-                characterController.Move(movement * Time.deltaTime * moveSpeed);
-            }
         }
+      
     }
+    
     //else if (playerCanMove && SceneManager.GetActiveScene().name == "Level_3")
     //{
     //    float moonGravity = -0.01f;
