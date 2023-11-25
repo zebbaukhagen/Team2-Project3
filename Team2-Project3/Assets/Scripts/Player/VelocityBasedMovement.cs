@@ -39,7 +39,7 @@ public class VelocityBasedMovement : MonoBehaviour
 
     void Movement()
     {
-        if (playerCanMove)
+        if (playerCanMove && SceneManager.GetActiveScene().name == "Level_3")
         {
             float downforce = -0.75f;
             bool increasingGravity = false;
@@ -52,10 +52,9 @@ public class VelocityBasedMovement : MonoBehaviour
 
             if(characterController.isGrounded == false)
             {
-                
                 if(characterController.velocity.y < 0)
                 {
-                    downforce += 5.0f * Time.deltaTime;
+                    downforce -= 5.0f * Time.deltaTime;
                     increasingGravity = true;
                 }
             }
@@ -72,15 +71,15 @@ public class VelocityBasedMovement : MonoBehaviour
             }
         }
     }
-        //else if (playerCanMove && SceneManager.GetActiveScene().name == "Level_3")
-        //{
-        //    float moonGravity = -0.01f;
+    //else if (playerCanMove && SceneManager.GetActiveScene().name == "Level_3")
+    //{
+    //    float moonGravity = -0.01f;
 
-        //    Vector3 movement = transform.forward * Input.GetAxis("Vertical");
-        //    movement.y = moonGravity;
-        //    characterController.Move(movement * Time.deltaTime * moveSpeed);
-        //}
-    
+    //    Vector3 movement = transform.forward * Input.GetAxis("Vertical");
+    //    movement.y = moonGravity;
+    //    characterController.Move(movement * Time.deltaTime * moveSpeed);
+    //}
+
 
 
 
@@ -92,17 +91,19 @@ public class VelocityBasedMovement : MonoBehaviour
 
             //if (Input.GetAxis("Vertical") == 0)
             //{
-                if (modelHolder.localRotation.z >= 0)
-                {
-                    modelHolder.Rotate(0.0f, 0.0f, -tiltPower * Time.deltaTime, Space.Self);
-                }
-                else
-                {
-                    modelHolder.Rotate(0.0f, 0.0f, tiltPower * Time.deltaTime, Space.Self);
-                }
-            
+            if (modelHolder.localRotation.z >= 0)
+            {
+                modelHolder.Rotate(0.0f, rotationSpeed, -tiltPower * Time.deltaTime, Space.Self);
+                //modelHolder.Rotate(0.0f, rotationSpeed, 0.0f, -tiltPower * Time.delayTime, Space.Self);
+            }
+            else
+            {
+                modelHolder.Rotate(0.0f, 0.0f, tiltPower * Time.deltaTime, Space.Self);
+            }
         }
     }
+        
+    
 
     public void PlayerFallsOver()
     {
@@ -140,7 +141,7 @@ public class VelocityBasedMovement : MonoBehaviour
         Movement();
         RotateUnicycle();
         Tilt();
-        PlayerFallsOver();
+        //PlayerFallsOver();
     }
 }
 
