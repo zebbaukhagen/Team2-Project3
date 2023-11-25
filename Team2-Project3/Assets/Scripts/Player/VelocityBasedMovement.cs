@@ -27,9 +27,8 @@ public class VelocityBasedMovement : MonoBehaviour
     float counterTilt = 2.0f;
 
     public bool playerHasFallen = false;
- 
-
-
+    
+    
 
 
 
@@ -129,18 +128,16 @@ public class VelocityBasedMovement : MonoBehaviour
         {
             float rotationChange = rotationSpeed * Input.GetAxis("Horizontal") * Time.deltaTime;
             transform.Rotate(Vector3.up, rotationChange, Space.Self);
-
-            modelHolder.Rotate(Vector3.up, rotationChange, Space.Self);
-
-            // Additional rotation based on input keys (optional)
-            if (Input.GetKey(KeyCode.A))
-            {
-                modelHolder.Rotate(0.0f, -0.5f, 0.0f);
-            }
-            else if (Input.GetKey(KeyCode.D))
-            {
-                modelHolder.Rotate(0.0f, 0.5f, 0.0f);
-            }
+            
+            //if(Input.GetKey(KeyCode.A))
+            //{
+            //    modelHolder.Rotate(0.0f, -0.5f, 0.0f);
+            //}
+            //else if(Input.GetKey(KeyCode.D))
+            //{
+            //    modelHolder.Rotate(0.0f, 0.5f, 0.0f);
+            //}
+            
         }
     }
 
@@ -159,11 +156,7 @@ public class VelocityBasedMovement : MonoBehaviour
         Tilt();
         PlayerFallsOver();
     }
-
-
-
 }
-
 
 
 
