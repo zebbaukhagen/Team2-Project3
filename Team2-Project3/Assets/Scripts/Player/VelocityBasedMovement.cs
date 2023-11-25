@@ -27,8 +27,9 @@ public class VelocityBasedMovement : MonoBehaviour
     float counterTilt = 2.0f;
 
     public bool playerHasFallen = false;
-    
-    
+ 
+
+
 
 
 
@@ -44,13 +45,16 @@ public class VelocityBasedMovement : MonoBehaviour
             float downforce = -0.75f;
             bool increasingGravity = false;
             //float secondaryForce = 0.75f;
+
+            Vector3 forwardDirection = modelHolder.forward;
+            forwardDirection.y = 0.0f;
             
-            Vector3 movement = transform.forward * Input.GetAxis("Vertical");
+            Vector3 movement = forwardDirection * Input.GetAxis("Vertical");
             movement.y = downforce;
             //movement.x = secondaryForce;
             characterController.Move(movement * Time.deltaTime * moveSpeed);
 
-            if(characterController.isGrounded == false)
+            if(!characterController.isGrounded)
             {
                 if(characterController.velocity.y < 0)
                 {
@@ -88,12 +92,13 @@ public class VelocityBasedMovement : MonoBehaviour
         if (playerCanMove)
         {
             modelHolder.Rotate(0.0f, 0.0f, Input.GetAxis("Horizontal") * tiltPower * Time.deltaTime * counterTilt, Space.Self);
+            
 
             //if (Input.GetAxis("Vertical") == 0)
             //{
             if (modelHolder.localRotation.z >= 0)
             {
-                modelHolder.Rotate(0.0f, rotationSpeed, -tiltPower * Time.deltaTime, Space.Self);
+                modelHolder.Rotate(0.0f, 0.0f, -tiltPower * Time.deltaTime, Space.Self);
                 //modelHolder.Rotate(0.0f, rotationSpeed, 0.0f, -tiltPower * Time.delayTime, Space.Self);
             }
             else
@@ -116,8 +121,7 @@ public class VelocityBasedMovement : MonoBehaviour
     }
 
 
-
-
+    
 
     public void RotateUnicycle()
     {
@@ -125,6 +129,18 @@ public class VelocityBasedMovement : MonoBehaviour
         {
             float rotationChange = rotationSpeed * Input.GetAxis("Horizontal") * Time.deltaTime;
             transform.Rotate(Vector3.up, rotationChange, Space.Self);
+
+            modelHolder.Rotate(Vector3.up, rotationChange, Space.Self);
+
+            // Additional rotation based on input keys (optional)
+            if (Input.GetKey(KeyCode.A))
+            {
+                modelHolder.Rotate(0.0f, -0.5f, 0.0f);
+            }
+            else if (Input.GetKey(KeyCode.D))
+            {
+                modelHolder.Rotate(0.0f, 0.5f, 0.0f);
+            }
         }
     }
 
@@ -141,9 +157,13 @@ public class VelocityBasedMovement : MonoBehaviour
         Movement();
         RotateUnicycle();
         Tilt();
-        //PlayerFallsOver();
+        PlayerFallsOver();
     }
+
+
+
 }
+
 
 
 
