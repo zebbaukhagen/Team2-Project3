@@ -101,11 +101,11 @@ public class VelocityBasedMovement : MonoBehaviour
             modelHolder.Rotate(0.0f, 0.0f, Input.GetAxis("Horizontal") * tiltMoonPower * Time.deltaTime * counterMoonTilt, Space.Self);
             //modelHolder.Rotate(0.0f, Input.GetAxis("Horizontal"), 0.0f * tiltMoonPower * Time.deltaTime * counterMoonTilt, Space.Self);
 
-            if (Input.GetKey(KeyCode.A))
+            if (Input.GetKey(KeyCode.Keypad4))
             {
                 modelHolder.Rotate(0.0f, 0.0f, steadyMoonForce * Time.deltaTime, Space.Self);
             }
-            if (Input.GetKey(KeyCode.D))
+            if (Input.GetKey(KeyCode.Keypad6))
             {
                 modelHolder.Rotate(0.0f, 0.0f, -steadyMoonForce * Time.deltaTime, Space.Self);
             }
@@ -125,17 +125,18 @@ public class VelocityBasedMovement : MonoBehaviour
         else if (playerCanMove && SceneManager.GetActiveScene().name == "Level_1" || SceneManager.GetActiveScene().name == "Level_2")
         {
             Debug.Log("on Earth");
-            //modelHolder.Rotate(0.0f, 0.0f, Input.GetAxis("Horizontal") * tiltEarthPower * Time.deltaTime * counterEarthTilt, Space.Self);
-            modelHolder.Rotate(0.0f, Input.GetAxis("Horizontal"), 0.0f * tiltEarthPower * Time.deltaTime * counterEarthTilt, Space.Self);
+            modelHolder.Rotate(0.0f, 0.0f, Input.GetAxis("Horizontal") * tiltEarthPower * Time.deltaTime * counterEarthTilt, Space.Self);
+            //modelHolder.Rotate(0.0f, Input.GetAxis("Horizontal"), 0.0f * tiltEarthPower * Time.deltaTime * counterEarthTilt, Space.Self);
 
-            if (Input.GetKey(KeyCode.A))
+            if (Input.GetKey(KeyCode.Keypad4))
             {
                 modelHolder.Rotate(0.0f, 0.0f, steadyEarthForce * Time.deltaTime, Space.Self);
             }
-            if (Input.GetKey(KeyCode.D))
+            if (Input.GetKey(KeyCode.Keypad6))
             {
                 modelHolder.Rotate(0.0f, 0.0f, -steadyEarthForce * Time.deltaTime, Space.Self);
             }
+            
 
 
             //if (Input.GetAxis("Vertical") == 0)
