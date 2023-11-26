@@ -4015,7 +4015,7 @@ PrefabInstance:
         type: 3}
       propertyPath: cameraTransform
       value: 
-      objectReference: {fileID: 2071118956}
+      objectReference: {fileID: 0}
     - target: {fileID: 7754619145462661200, guid: 2271c90147edb864c82fdd1f39411f4f,
         type: 3}
       propertyPath: levelController
@@ -4029,24 +4029,18 @@ PrefabInstance:
     - target: {fileID: 7754619145462661200, guid: 2271c90147edb864c82fdd1f39411f4f,
         type: 3}
       propertyPath: cameraOffsetFromModel.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7754619145462661200, guid: 2271c90147edb864c82fdd1f39411f4f,
         type: 3}
       propertyPath: cameraOffsetFromModel.z
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2271c90147edb864c82fdd1f39411f4f, type: 3}
---- !u!4 &2071118956 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4226756197662166919, guid: 2271c90147edb864c82fdd1f39411f4f,
-    type: 3}
-  m_PrefabInstance: {fileID: 2005940091}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
