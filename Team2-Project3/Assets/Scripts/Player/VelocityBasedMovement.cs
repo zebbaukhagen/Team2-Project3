@@ -10,6 +10,7 @@ public class VelocityBasedMovement : MonoBehaviour
     /// References
     /// </summary>
     public Transform modelHolder;
+    //public Transform rotationPiece;
     public CharacterController characterController;
     public bool playerCanMove = true;
     [SerializeField] private UILevelController levelController;
@@ -87,26 +88,26 @@ public class VelocityBasedMovement : MonoBehaviour
 
     public void Tilt()
     {
-        float tiltPowerMoon = -10.0f;
-        float counterTiltMoon = 2.5.0f;
-        float steadyForceMoon = 20.0f;
-        float tiltPowerEarth = -10.0f;
-        float counterTiltEarth = 5.0f;
-        float steadyForceEarth = 40.0f;
+        float tiltMoonPower = -10.0f;
+        float counterMoonTilt = 2.5f;
+        float steadyMoonForce = 20.0f;
+        float tiltEarthPower = -10.0f;
+        float counterEarthTilt = 5.0f;
+        float steadyEarthForce = 40.0f;
 
         if (playerCanMove && SceneManager.GetActiveScene().name == "Level_3")
         {
             Debug.Log("on the moon");
-            //modelHolder.Rotate(0.0f, 0.0f, Input.GetAxis("Horizontal") * tiltPower * Time.deltaTime * counterTilt, Space.Self);
-            modelHolder.Rotate(0.0f, Input.GetAxis("Horizontal"), 0.0f * tiltPower * Time.deltaTime * counterTilt, Space.Self);
+            modelHolder.Rotate(0.0f, 0.0f, Input.GetAxis("Horizontal") * tiltMoonPower * Time.deltaTime * counterMoonTilt, Space.Self);
+            //modelHolder.Rotate(0.0f, Input.GetAxis("Horizontal"), 0.0f * tiltMoonPower * Time.deltaTime * counterMoonTilt, Space.Self);
 
-            if (Input.GetKey(KeyCode.Q))
+            if (Input.GetKey(KeyCode.A))
             {
-                modelHolder.Rotate(0.0f, 0.0f, steadyForce * Time.deltaTime, Space.Self);
+                modelHolder.Rotate(0.0f, 0.0f, steadyMoonForce * Time.deltaTime, Space.Self);
             }
-            if (Input.GetKey(KeyCode.E))
+            if (Input.GetKey(KeyCode.D))
             {
-                modelHolder.Rotate(0.0f, 0.0f, -steadyForce * Time.deltaTime, Space.Self);
+                modelHolder.Rotate(0.0f, 0.0f, -steadyMoonForce * Time.deltaTime, Space.Self);
             }
 
 
@@ -114,26 +115,26 @@ public class VelocityBasedMovement : MonoBehaviour
             //{
             if (modelHolder.localRotation.z >= 0)
             {
-                modelHolder.Rotate(0.0f, 0.0f, -tiltPower * Time.deltaTime, Space.Self);
+                modelHolder.Rotate(0.0f, 0.0f, -tiltMoonPower * Time.deltaTime, Space.Self);
             }
             else
             {
-                modelHolder.Rotate(0.0f, 0.0f, tiltPower * Time.deltaTime, Space.Self);
+                modelHolder.Rotate(0.0f, 0.0f, tiltMoonPower * Time.deltaTime, Space.Self);
             }
         }
         else if (playerCanMove && SceneManager.GetActiveScene().name == "Level_1" || SceneManager.GetActiveScene().name == "Level_2")
         {
             Debug.Log("on Earth");
-            //modelHolder.Rotate(0.0f, 0.0f, Input.GetAxis("Horizontal") * tiltPower * Time.deltaTime * counterTilt, Space.Self);
-            modelHolder.Rotate(0.0f, Input.GetAxis("Horizontal"), 0.0f * tiltPower * Time.deltaTime * counterTilt, Space.Self);
+            //modelHolder.Rotate(0.0f, 0.0f, Input.GetAxis("Horizontal") * tiltEarthPower * Time.deltaTime * counterEarthTilt, Space.Self);
+            modelHolder.Rotate(0.0f, Input.GetAxis("Horizontal"), 0.0f * tiltEarthPower * Time.deltaTime * counterEarthTilt, Space.Self);
 
-            if (Input.GetKey(KeyCode.Q))
+            if (Input.GetKey(KeyCode.A))
             {
-                modelHolder.Rotate(0.0f, 0.0f, steadyForce * Time.deltaTime, Space.Self);
+                modelHolder.Rotate(0.0f, 0.0f, steadyEarthForce * Time.deltaTime, Space.Self);
             }
-            if (Input.GetKey(KeyCode.E))
+            if (Input.GetKey(KeyCode.D))
             {
-                modelHolder.Rotate(0.0f, 0.0f, -steadyForce * Time.deltaTime, Space.Self);
+                modelHolder.Rotate(0.0f, 0.0f, -steadyEarthForce * Time.deltaTime, Space.Self);
             }
 
 
@@ -141,22 +142,16 @@ public class VelocityBasedMovement : MonoBehaviour
             //{
             if (modelHolder.localRotation.z >= 0)
             {
-                modelHolder.Rotate(0.0f, 0.0f, -tiltPower * Time.deltaTime, Space.Self);
+                modelHolder.Rotate(0.0f, 0.0f, -tiltEarthPower * Time.deltaTime, Space.Self);
             }
             else
             {
-                modelHolder.Rotate(0.0f, 0.0f, tiltPower * Time.deltaTime, Space.Self);
+                modelHolder.Rotate(0.0f, 0.0f, tiltEarthPower * Time.deltaTime, Space.Self);
             }
         }
     }
-    }
-            
-        
     
-    
-        
-    
-
+ 
     public void PlayerFallsOver()
     {
         if(modelHolder.eulerAngles.z >= 50 && modelHolder.eulerAngles.z <= 300)
@@ -166,9 +161,6 @@ public class VelocityBasedMovement : MonoBehaviour
             playerHasFallen = true;
         }
     }
-
-
-    
 
     public void RotateUnicycle()
     {
