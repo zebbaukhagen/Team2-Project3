@@ -14,17 +14,18 @@ public class VelocityBasedMovement : MonoBehaviour
     public CharacterController characterController;
     public bool playerCanMove = true;
     [SerializeField] private UILevelController levelController;
+    [SerializeField] private Animator wheelAnim;
+    [SerializeField] private Animator seatAnim;
 
-  
 
     /// <summary>
     /// Movement
     /// </summary>
-    
-    
-   
+
+
+
     //movement direction local to the holders direction
-   
+
     public bool playerHasFallen = false;
 
 
@@ -174,6 +175,31 @@ public class VelocityBasedMovement : MonoBehaviour
         }
     }
 
+    private void AnimationControl()
+    {
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            wheelAnim.SetBool("Forward", true);
+            seatAnim.SetBool("SeatForward", true);
+        }
+        else if (Input.GetKeyUp(KeyCode.W))
+        {
+            wheelAnim.SetBool("Forward", false);
+            seatAnim.SetBool("SeatForward", false);
+        }
+
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            wheelAnim.SetBool("Backward", true);
+            seatAnim.SetBool("SeatBackward", true);
+        }
+        else if (Input.GetKeyUp(KeyCode.S))
+        {
+            wheelAnim.SetBool("Backward", false);
+            seatAnim.SetBool("SeatBackward", false);
+        }
+    }
+
 
     // Start is called before the first frame update
     void Start()
@@ -188,6 +214,7 @@ public class VelocityBasedMovement : MonoBehaviour
         RotateUnicycle();
         Tilt();
         PlayerFallsOver();
+        AnimationControl();
     }
 }
 
