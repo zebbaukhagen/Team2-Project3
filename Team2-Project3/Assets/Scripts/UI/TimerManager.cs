@@ -5,20 +5,27 @@ using UnityEngine.UI;
 public class Timer : MonoBehaviour
 {
     public float countdownTime = 0.0f; // 2 minutes in seconds
-    private float currentTime;
+    public float currentTime;
     [SerializeField] private TMP_Text timer;
-    [SerializeField] private TMP_Text failed;
+    public TMP_Text failed;
+    public TMP_Text completeTime;
     [SerializeField] private UILevelController levelController;
     [SerializeField] private VelocityBasedMovement playerMovement;
+    int minutes;
+    int seconds;
+    public float bestTime;
+
 
 
 
     void Start()
     {
+         
+
         playerMovement = GameObject.Find("Unicycle").GetComponent<VelocityBasedMovement>();
-        
         currentTime = countdownTime;
         UpdateTimerText();
+        
     }
 
     void Update()
@@ -33,22 +40,29 @@ public class Timer : MonoBehaviour
             }
             else if (playerMovement.playerCanMove == false && playerMovement.playerHasFallen == true)
             {
-                
+
                 failed.text = "Time: " + Mathf.Max(0, Mathf.Ceil(currentTime));
-                Debug.Log(currentTime);
+                
 
             }
         }
-        
-      
     }
 
+    public void SetLoseTime()
+    {
+        if(playerMovement.playerHasFallen == true)
+        {
+            failed.text =  Mathf.Floor(minutes).ToString("00") + ":" + Mathf.Floor(seconds).ToString("00");
+            Debug.Log(minutes);
+            Debug.Log(seconds);
+        }
+    }
 
 
     void UpdateTimerText()
     {
-        int minutes = Mathf.FloorToInt(currentTime / 60);
-        int seconds = Mathf.FloorToInt(currentTime % 60);
+        minutes = Mathf.FloorToInt(currentTime / 60);
+        seconds = Mathf.FloorToInt(currentTime % 60);
         timer.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
