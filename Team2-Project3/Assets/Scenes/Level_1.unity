@@ -8531,8 +8531,6 @@ MonoBehaviour:
   timer: {fileID: 775635738}
   failed: {fileID: 1032471796}
   completeTime: {fileID: 164005162}
-  levelController: {fileID: 1047072837}
-  playerMovement: {fileID: 1883800704}
   bestTime: 0
 --- !u!114 &1047072839
 MonoBehaviour:
@@ -11020,7 +11018,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1395800222
 MonoBehaviour:
   m_ObjectHideFlags: 0
