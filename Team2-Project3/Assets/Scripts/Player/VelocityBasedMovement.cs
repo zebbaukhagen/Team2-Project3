@@ -29,12 +29,6 @@ public class VelocityBasedMovement : MonoBehaviour
     public bool playerHasFallen = false;
 
 
-
-
-
-
-
-
     //Velocity gained per second. Applies midairMovementMultiplier when we are not grounded:
 
     void Movement()
@@ -58,14 +52,14 @@ public class VelocityBasedMovement : MonoBehaviour
                 {
                     downforce -= 5.0f * Time.deltaTime;
                     Debug.Log(downforce);
-                    increasingGravity = true;
+                    //increasingGravity = true;
                 }
             }
             else
             {
                 // If the player is grounded, reset the downforce and the flag
                 downforce = -0.75f;
-                increasingGravity = false;
+                //increasingGravity = false;
             }
         }
         else if (playerCanMove && SceneManager.GetActiveScene().name == "Level_1" || SceneManager.GetActiveScene().name == "Level_2")
@@ -73,7 +67,7 @@ public class VelocityBasedMovement : MonoBehaviour
             Debug.Log("Not Level 3");
             float moveEarthSpeed = 2.0f;
             float downforce = -0.75f;
-            bool increasingGravity = false;
+            //bool increasingGravity = false;
 
             Vector3 forwardDirection = modelHolder.forward;
             forwardDirection.y = 0.0f;
@@ -159,8 +153,9 @@ public class VelocityBasedMovement : MonoBehaviour
         if(modelHolder.eulerAngles.z >= 50 && modelHolder.eulerAngles.z <= 300)
         {
             playerCanMove = false;
-            levelController.ActivateLosePanel();
             playerHasFallen = true;
+            levelController.ActivateLosePanel();
+            
         }
     }
 

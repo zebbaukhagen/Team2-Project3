@@ -61,16 +61,12 @@ public class UILevelController : MonoBehaviour
             {
                 pauseMenuPanel.SetActive(true);
                 playerMovement.playerCanMove = false;
-                
-
-
             }
             else
             {
                 isPaused = false;
                 pauseMenuPanel.SetActive(false);
                 playerMovement.playerCanMove = true;
-                
             }
         }
     }
@@ -80,10 +76,7 @@ public class UILevelController : MonoBehaviour
         isPaused = false;
         pauseMenuPanel.SetActive(!pauseMenuPanel.activeSelf);
         playerMovement.playerCanMove = true;
-        
     }
-    
-
 
     public void QuitGame()
     {
@@ -95,8 +88,6 @@ public class UILevelController : MonoBehaviour
     {
         SceneManager.LoadScene(sceneName);
     }
-
-    
 
     public void GoToMainMenu()
     {

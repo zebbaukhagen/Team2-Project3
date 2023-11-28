@@ -33,8 +33,9 @@ public class Timer : MonoBehaviour
             }
             else if (playerMovement.playerCanMove == false && playerMovement.playerHasFallen == true)
             {
-                Debug.Log("player has fallen");
+                
                 failed.text = "Time: " + Mathf.Max(0, Mathf.Ceil(currentTime));
+                Debug.Log(currentTime);
 
             }
         }
