@@ -6,12 +6,14 @@ public class WinScript : MonoBehaviour
 {
     private UILevelController levelController;
     private VelocityBasedMovement playerMovement;
+    private Timer timer;
     
 
     void Start()
     {
         levelController = GameObject.Find("Canvas").GetComponent<UILevelController>();
         playerMovement = GameObject.Find("Unicycle").GetComponent<VelocityBasedMovement>();
+        timer = GameObject.Find("Canvas").GetComponent<Timer>();
     }
 
     void OnTriggerEnter(Collider other)

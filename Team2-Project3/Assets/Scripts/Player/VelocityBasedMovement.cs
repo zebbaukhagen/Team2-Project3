@@ -14,13 +14,12 @@ public class VelocityBasedMovement : MonoBehaviour
     public CharacterController characterController;
     public bool playerCanMove = true;
     [SerializeField] private UILevelController levelController;
+    private Timer timer;
     [SerializeField] private Animator wheelAnim;
     [SerializeField] private Animator seatAnim;
 
+    
 
-    /// <summary>
-    /// Movement
-    /// </summary>
 
 
 
@@ -31,13 +30,30 @@ public class VelocityBasedMovement : MonoBehaviour
 
     //Velocity gained per second. Applies midairMovementMultiplier when we are not grounded:
 
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        timer = GameObject.Find("Canvas").GetComponent<Timer>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        Movement();
+        RotateUnicycle();
+        Tilt();
+        PlayerFallsOver();
+        AnimationControl();
+    }
+
     void Movement()
     {
         if (playerCanMove && SceneManager.GetActiveScene().name == "Level_3")
         {
             Debug.Log("I am on Level 3, the Moon Level ");
             float downforce = -0.25f;
-            bool increasingGravity = false;
+            //bool increasingGravity = false;
             Vector3 forwardDirection = modelHolder.forward;
             forwardDirection.y = 0.0f;
             float moveMoonSpeed = 5.0f;
@@ -92,7 +108,7 @@ public class VelocityBasedMovement : MonoBehaviour
 
         if (playerCanMove && SceneManager.GetActiveScene().name == "Level_3")
         {
-            Debug.Log("on the moon");
+            
             modelHolder.Rotate(0.0f, 0.0f, Input.GetAxis("Horizontal") * tiltMoonPower * Time.deltaTime * counterMoonTilt, Space.Self);
             //modelHolder.Rotate(0.0f, Input.GetAxis("Horizontal"), 0.0f * tiltMoonPower * Time.deltaTime * counterMoonTilt, Space.Self);
 
@@ -119,7 +135,7 @@ public class VelocityBasedMovement : MonoBehaviour
         }
         else if (playerCanMove && SceneManager.GetActiveScene().name == "Level_1" || SceneManager.GetActiveScene().name == "Level_2")
         {
-            Debug.Log("on Earth");
+            
             modelHolder.Rotate(0.0f, 0.0f, Input.GetAxis("Horizontal") * tiltEarthPower * Time.deltaTime * counterEarthTilt, Space.Self);
             //modelHolder.Rotate(0.0f, Input.GetAxis("Horizontal"), 0.0f * tiltEarthPower * Time.deltaTime * counterEarthTilt, Space.Self);
 
@@ -155,6 +171,7 @@ public class VelocityBasedMovement : MonoBehaviour
             playerCanMove = false;
             playerHasFallen = true;
             levelController.ActivateLosePanel();
+            timer.SetLoseTime();
             
         }
     }
@@ -193,23 +210,6 @@ public class VelocityBasedMovement : MonoBehaviour
             wheelAnim.SetBool("Backward", false);
             seatAnim.SetBool("SeatBackward", false);
         }
-    }
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        Movement();
-        RotateUnicycle();
-        Tilt();
-        PlayerFallsOver();
-        AnimationControl();
     }
 }
 
