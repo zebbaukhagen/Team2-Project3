@@ -23,6 +23,7 @@ public class WinScript : MonoBehaviour
         {
             playerMovement.playerCanMove = false;
             levelController.ActivateWinPanel();
+            playerMovement.playerBeatLevel = true;
         }
     }
 }

@@ -15,6 +15,7 @@ public class VelocityBasedMovement : MonoBehaviour
     public bool playerCanMove = true;
     [SerializeField] private UILevelController levelController;
     private Timer timer;
+    public bool playerBeatLevel = false;
     [SerializeField] private Animator wheelAnim;
     [SerializeField] private Animator seatAnim;
 

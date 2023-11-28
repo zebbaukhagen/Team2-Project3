@@ -9,8 +9,9 @@ public class Timer : MonoBehaviour
     [SerializeField] private TMP_Text timer;
     public TMP_Text failed;
     public TMP_Text completeTime;
-    [SerializeField] private UILevelController levelController;
-    [SerializeField] private VelocityBasedMovement playerMovement;
+    private UILevelController levelController;
+    private VelocityBasedMovement playerMovement;
+    private WinScript win;
     int minutes;
     int seconds;
     public float bestTime;
@@ -20,8 +21,8 @@ public class Timer : MonoBehaviour
 
     void Start()
     {
-         
-
+        win = GameObject.Find("Unicycle").GetComponent<WinScript>();
+        levelController = GameObject.Find("Canvas").GetComponent<UILevelController>();
         playerMovement = GameObject.Find("Unicycle").GetComponent<VelocityBasedMovement>();
         currentTime = countdownTime;
         UpdateTimerText();
@@ -53,6 +54,16 @@ public class Timer : MonoBehaviour
         if(playerMovement.playerHasFallen == true)
         {
             failed.text =  Mathf.Floor(minutes).ToString("00") + ":" + Mathf.Floor(seconds).ToString("00");
+            Debug.Log(minutes);
+            Debug.Log(seconds);
+        }
+    }
+
+    public void SetWinTime()
+    {
+        if (playerMovement.playerBeatLevel == true)
+        {
+            failed.text = Mathf.Floor(minutes).ToString("00") + ":" + Mathf.Floor(seconds).ToString("00");
             Debug.Log(minutes);
             Debug.Log(seconds);
         }
