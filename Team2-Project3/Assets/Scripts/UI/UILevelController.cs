@@ -99,10 +99,14 @@ public class UILevelController : MonoBehaviour
         if (SceneManager.GetActiveScene().name == "Level_1")
         {
             LoadScene("Level_2");
+            playerMovement.playerCanMove = true;
+            playerMovement.playerHasFallen = false;
         }
         else if (SceneManager.GetActiveScene().name == "Level_2")
         {
             LoadScene("Level_3");
+            playerMovement.playerCanMove = true;
+            playerMovement.playerHasFallen = false;
         }
     }
 
@@ -121,14 +125,20 @@ public class UILevelController : MonoBehaviour
         if (SceneManager.GetActiveScene().name == "Level_1")
         {
             LoadScene("Level_1");
+            playerMovement.playerCanMove = true;
+            playerMovement.playerHasFallen = false;
         }
         else if (SceneManager.GetActiveScene().name == "Level_2")
         {
             LoadScene("Level_2");
+            playerMovement.playerCanMove = true;
+            playerMovement.playerHasFallen = false;
         }
         if (SceneManager.GetActiveScene().name == "Level_3")
         {
             LoadScene("Level_3");
+            playerMovement.playerCanMove = true;
+            playerMovement.playerHasFallen = false;
         }
     }
 }

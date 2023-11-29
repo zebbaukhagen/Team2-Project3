@@ -12,8 +12,6 @@ public class GameManager : MonoBehaviour
     private bool levelTwoCompleted = false;
     private bool levelThreeCompleted = false;
     private Timer timer;
-    //private float levelCompleteTime;
-    //private float BestCompletionTime;
     public float bestTime1;//level One Times
     public float bestTime2;//level One Times
     public float bestTime3;//level Two Times
@@ -23,10 +21,10 @@ public class GameManager : MonoBehaviour
     public bool playerHasPlayedLevelOne = false;
     public bool playerHasPlayedLevelTwo = false;
     public bool playerHasPlayedLevelThree = false;
-    //[SerializeField] private GameObject playerCollisions;
+    private VelocityBasedMovement playerMovement;
 
-    
-    
+
+
 
     public List<bool> ListOfLevelsCompleted
     {
@@ -55,8 +53,9 @@ public class GameManager : MonoBehaviour
         Debug.Log("audioManager instance is equal to " + audioManager);
         InitializeLevelCompletionList();
         
-          
-        
+
+
+
     }
 
     private void Update()
@@ -80,6 +79,7 @@ public class GameManager : MonoBehaviour
         if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
         {
             LoadLevel(nextSceneIndex);
+            
         }
         else
         {

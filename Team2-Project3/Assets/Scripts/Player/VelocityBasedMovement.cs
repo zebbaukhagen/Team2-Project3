@@ -81,7 +81,7 @@ public class VelocityBasedMovement : MonoBehaviour
         }
         else if (playerCanMove && SceneManager.GetActiveScene().name == "Level_1" || SceneManager.GetActiveScene().name == "Level_2")
         {
-            Debug.Log("Not Level 3");
+            
             float moveEarthSpeed = 5.0f;
             float downforce = -1.5f;
             //bool increasingGravity = false;
@@ -167,14 +167,18 @@ public class VelocityBasedMovement : MonoBehaviour
  
     public void PlayerFallsOver()
     {
-        if(modelHolder.eulerAngles.z >= 50 && modelHolder.eulerAngles.z <= 300)
+        if(SceneManager.GetActiveScene().name == "Level_1" || SceneManager.GetActiveScene().name == "Level_2" || SceneManager.GetActiveScene().name == "Level_3")
         {
-            playerCanMove = false;
-            playerHasFallen = true;
-            levelController.ActivateLosePanel();
-            timer.SetLoseTime();
-            
+            if (modelHolder.eulerAngles.z >= 50 && modelHolder.eulerAngles.z <= 300)
+            {
+                playerCanMove = false;
+                playerHasFallen = true;
+                levelController.ActivateLosePanel();
+                timer.SetLoseTime();
+
+            }
         }
+     
     }
 
     public void RotateUnicycle()

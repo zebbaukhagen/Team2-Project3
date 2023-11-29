@@ -8,7 +8,7 @@ public class UnicycleController : MonoBehaviour
 
     private float rotationPower = 7.5f;
     float tiltPower = -10.0f;
-    float tiltAngle = 0.0f;
+    
     float horizontalInput = 0.0f;
     float verticalInput = 0.0f;
     public bool hasControl = true;
