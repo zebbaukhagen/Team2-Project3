@@ -6437,7 +6437,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   instructionsPanel: {fileID: 1133262837}
-  settingsMenu: {fileID: 0}
   CreditsMenu: {fileID: 483210105}
 --- !u!1 &1505150239
 GameObject:
@@ -6961,6 +6960,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38dc7f2876609b442bd274bbe690acf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timer: {fileID: 0}
+  bestTime1: 0
+  bestTime2: 0
+  bestTime3: 0
+  bestTime4: 0
+  bestTime5: 0
+  bestTime6: 0
+  playerHasPlayedLevelOne: 0
+  playerHasPlayedLevelTwo: 0
+  playerHasPlayedLevelThree: 0
+  playerMovement: {fileID: 7754619145462661200, guid: 2271c90147edb864c82fdd1f39411f4f,
+    type: 3}
+  playerIsAbleToMove: 0
+  playerHasFallen: 0
 --- !u!4 &1547694865
 Transform:
   m_ObjectHideFlags: 0

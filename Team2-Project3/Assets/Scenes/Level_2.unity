@@ -4124,6 +4124,7 @@ MonoBehaviour:
   winPanel: {fileID: 555495026}
   isPaused: 0
   playerMovement: {fileID: 2084914544}
+  gameManager: {fileID: 0}
 --- !u!114 &689279691
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4145,6 +4146,9 @@ MonoBehaviour:
   bestPersonalTimeLevelOne: 0
   bestPersonalTimeLevelTwo: 0
   bestPersonalTimeLevelThree: 0
+  levelController: {fileID: 689279690}
+  playerMovement: {fileID: 2084914544}
+  gameManager: {fileID: 0}
 --- !u!114 &689279692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14363,6 +14367,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 351a60a3af912354b9a72b504a2a004b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelController: {fileID: 0}
+  playerMovement: {fileID: 0}
+  timer: {fileID: 0}
+  gameManager: {fileID: 0}
 --- !u!1 &2087714361
 GameObject:
   m_ObjectHideFlags: 0
