@@ -14,8 +14,14 @@ public class GameManager : MonoBehaviour
     private Timer timer;
     //private float levelCompleteTime;
     //private float BestCompletionTime;
-    public float bestTime;
+    public float bestTime1;
+    public float bestTime2;
+    public bool playerHasPlayedLevelOne = false;
+    public bool playerHasPlayedLevelTwo = false;
+    public bool playersHavePlayedLevelThree = false;
     //[SerializeField] private GameObject playerCollisions;
+
+    
     
 
     public List<bool> ListOfLevelsCompleted
@@ -29,7 +35,6 @@ public class GameManager : MonoBehaviour
         // Ensure only one instance of GameManager exists
         if (instance == null)
         {
-            bestTime = 0;
             instance = this;
             DontDestroyOnLoad(gameObject);
         }

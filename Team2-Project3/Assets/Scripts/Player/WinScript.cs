@@ -27,19 +27,30 @@ public class WinScript : MonoBehaviour
             levelController.ActivateWinPanel();
             playerMovement.playerBeatLevel = true;
 
-            gameManager.bestTime = timer.timerCurrentTime;
-            
-
-            if (gameManager.bestTime >= timer.timerCurrentTime)
+            if (!gameManager.playerHasPlayedLevelOne)
             {
-                gameManager.bestTime = timer.timerCurrentTime;
+                gameManager.bestTime1 = timer.timerCurrentTime;
+                timer.bestPersonalTime = gameManager.bestTime1;
             }
-            Debug.Log(timer.timerCurrentTime);
-            Debug.Log(gameManager.bestTime);
+            else if (gameManager.playerHasPlayedLevelOne)
+            {
+                gameManager.bestTime2 = timer.timerCurrentTime;
 
-            timer.UpdateBestTimeText();
-            timer.SetWinTime();
-            timer.SetBestTime();
+                if (gameManager.bestTime1 > gameManager.bestTime2)
+                {
+                    gameManager.bestTime1 = gameManager.bestTime2;
+                    timer.bestPersonalTime = gameManager.bestTime2;
+                }
+                else
+                {
+                    timer.bestPersonalTime = gameManager.bestTime1;
+                }
+            }
         }
+        gameManager.playerHasPlayedLevelOne = true;
+        timer.UpdateBestTimeText();
+        timer.SetWinTime();
+        timer.SetBestTime();
     }
 }
+

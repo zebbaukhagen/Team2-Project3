@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
-    public float countdownTime = 0.0f; // 2 minutes in seconds
+    public float countUpTime = 0.0f; // 2 minutes in seconds
     public float timerCurrentTime;
     [SerializeField] private TMP_Text timer;
     public TMP_Text failed;
@@ -29,8 +29,7 @@ public class Timer : MonoBehaviour
         win = GameObject.Find("Unicycle").GetComponent<WinScript>();
         levelController = GameObject.Find("Canvas").GetComponent<UILevelController>();
         playerMovement = GameObject.Find("Unicycle").GetComponent<VelocityBasedMovement>();
-        timerCurrentTime = countdownTime;
-        
+        timerCurrentTime = countUpTime;
         UpdateTimerText();
 
 
@@ -62,7 +61,6 @@ public class Timer : MonoBehaviour
         if (playerMovement.playerHasFallen == true)
         {
             failed.text = Mathf.Floor(minutes).ToString("00") + ":" + Mathf.Floor(seconds).ToString("00");
-
         }
     }
 
@@ -91,7 +89,7 @@ public class Timer : MonoBehaviour
 
     public void UpdateBestTimeText()
     {
-        bestPersonalTime = gameManager.bestTime;
+        
         bestMinutes = Mathf.FloorToInt(bestPersonalTime / 60);
         bestSeconds = Mathf.FloorToInt(bestPersonalTime % 60);
         bestCompletedTime.text = string.Format("{0:00}:{1:00}", bestMinutes, bestSeconds); ;
