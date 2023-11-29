@@ -12,8 +12,8 @@ public class VelocityBasedMovement : MonoBehaviour
     public Transform modelHolder;
     //public Transform rotationPiece;
     public CharacterController characterController;
-    [SerializeField] private UILevelController levelController;
-    [SerializeField] private Timer timer;
+    private UILevelController levelController;
+    private Timer timer;
     public bool playerBeatLevel = false;
     private Animator wheelAnim;
     private Animator seatAnim;
@@ -25,6 +25,7 @@ public class VelocityBasedMovement : MonoBehaviour
         timer = GameObject.Find("Canvas").GetComponent<Timer>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         levelController = GameObject.Find("Canvas").GetComponent<UILevelController>();
+        gameManager.playerIsAbleToMove = true;
     }
 
     // Update is called once per frame
@@ -39,60 +40,62 @@ public class VelocityBasedMovement : MonoBehaviour
 
     void Movement()
     {
-        if (gameManager.playerIsAbleToMove && SceneManager.GetActiveScene().name == "Level_1")
+        if (gameManager.playerIsAbleToMove)
         {
-            float moveEarthSpeed = 5.0f;
-            float downforce = -1.5f;
-
-            Vector3 forwardDirection = modelHolder.forward;
-            forwardDirection.y = 0.0f;
-
-            Vector3 movement = forwardDirection * Input.GetAxis("Vertical");
-            movement.y = downforce;
-
-            characterController.Move(movement * Time.deltaTime * moveEarthSpeed);
-        }
-
-        else if (gameManager.playerIsAbleToMove && SceneManager.GetActiveScene().name == "Level_2")
-        {
-
-            float moveEarthSpeed = 5.0f;
-            float downforce = -1.5f;
-            //bool increasingGravity = false;
-
-            Vector3 forwardDirection = modelHolder.forward;
-            forwardDirection.y = 0.0f;
-
-            Vector3 movement = forwardDirection * Input.GetAxis("Vertical");
-            movement.y = downforce;
-
-            characterController.Move(movement * Time.deltaTime * moveEarthSpeed);
-        }
-
-
-        if (gameManager.playerIsAbleToMove && SceneManager.GetActiveScene().name == "Level_3")
-        {
-            float downforce = -0.25f;
-            Vector3 forwardDirection = modelHolder.forward;
-            forwardDirection.y = 0.0f;
-            float moveMoonSpeed = 5.0f;
-
-            Vector3 movement = forwardDirection * Input.GetAxis("Vertical");
-            movement.y = downforce;
-            characterController.Move(movement * Time.deltaTime * moveMoonSpeed);
-
-            if (!characterController.isGrounded)
+            if (SceneManager.GetActiveScene().name == "Level_1")
             {
-                if (characterController.velocity.y < 0)
-                {
-                    downforce -= 5.0f * Time.deltaTime;
-                }
+                float moveEarthSpeed = 5.0f;
+                float downforce = -1.5f;
+
+                Vector3 forwardDirection = modelHolder.forward;
+                forwardDirection.y = 0.0f;
+
+                Vector3 movement = forwardDirection * Input.GetAxis("Vertical");
+                movement.y = downforce;
+
+                characterController.Move(movement * Time.deltaTime * moveEarthSpeed);
             }
-            else
+
+            else if (SceneManager.GetActiveScene().name == "Level_2")
             {
 
-                downforce = -0.75f;
+                float moveEarthSpeed = 5.0f;
+                float downforce = -1.5f;
+                //bool increasingGravity = false;
 
+                Vector3 forwardDirection = modelHolder.forward;
+                forwardDirection.y = 0.0f;
+
+                Vector3 movement = forwardDirection * Input.GetAxis("Vertical");
+                movement.y = downforce;
+
+                characterController.Move(movement * Time.deltaTime * moveEarthSpeed);
+            }
+
+            if (SceneManager.GetActiveScene().name == "Level_3")
+            {
+                float downforce = -0.25f;
+                Vector3 forwardDirection = modelHolder.forward;
+                forwardDirection.y = 0.0f;
+                float moveMoonSpeed = 5.0f;
+
+                Vector3 movement = forwardDirection * Input.GetAxis("Vertical");
+                movement.y = downforce;
+                characterController.Move(movement * Time.deltaTime * moveMoonSpeed);
+
+                if (!characterController.isGrounded)
+                {
+                    if (characterController.velocity.y < 0)
+                    {
+                        downforce -= 5.0f * Time.deltaTime;
+                    }
+                }
+                else
+                {
+
+                    downforce = -0.75f;
+
+                }
             }
         }
     }
@@ -106,69 +109,74 @@ public class VelocityBasedMovement : MonoBehaviour
         float counterEarthTilt = 5.0f;
         float steadyEarthForce = 40.0f;
 
-        if (gameManager.playerIsAbleToMove && SceneManager.GetActiveScene().name == "Level_3")
+        if(gameManager.playerIsAbleToMove) 
         {
-
-            modelHolder.Rotate(0.0f, 0.0f, Input.GetAxis("Horizontal") * tiltMoonPower * Time.deltaTime * counterMoonTilt, Space.Self);
-            //modelHolder.Rotate(0.0f, Input.GetAxis("Horizontal"), 0.0f * tiltMoonPower * Time.deltaTime * counterMoonTilt, Space.Self);
-
-            if (Input.GetKey(KeyCode.Keypad4))
+            if (SceneManager.GetActiveScene().name == "Level_1")
             {
-                modelHolder.Rotate(0.0f, 0.0f, steadyMoonForce * Time.deltaTime, Space.Self);
+                modelHolder.Rotate(0.0f, 0.0f, Input.GetAxis("Horizontal") * tiltEarthPower * Time.deltaTime * counterEarthTilt, Space.Self);
+                //modelHolder.Rotate(0.0f, Input.GetAxis("Horizontal"), 0.0f * tiltEarthPower * Time.deltaTime * counterEarthTilt, Space.Self);
+
+                if (Input.GetKey(KeyCode.Keypad4))
+                {
+                    modelHolder.Rotate(0.0f, 0.0f, steadyEarthForce * Time.deltaTime, Space.Self);
+                }
+                if (Input.GetKey(KeyCode.Keypad6))
+                {
+                    modelHolder.Rotate(0.0f, 0.0f, -steadyEarthForce * Time.deltaTime, Space.Self);
+                }
             }
-            if (Input.GetKey(KeyCode.Keypad6))
+            else if (SceneManager.GetActiveScene().name == "Level_2")
             {
-                modelHolder.Rotate(0.0f, 0.0f, -steadyMoonForce * Time.deltaTime, Space.Self);
+                modelHolder.Rotate(0.0f, 0.0f, Input.GetAxis("Horizontal") * tiltEarthPower * Time.deltaTime * counterEarthTilt, Space.Self);
+                //modelHolder.Rotate(0.0f, Input.GetAxis("Horizontal"), 0.0f * tiltEarthPower * Time.deltaTime * counterEarthTilt, Space.Self);
+
+                if (Input.GetKey(KeyCode.Keypad4))
+                {
+                    modelHolder.Rotate(0.0f, 0.0f, steadyEarthForce * Time.deltaTime, Space.Self);
+                }
+                if (Input.GetKey(KeyCode.Keypad6))
+                {
+                    modelHolder.Rotate(0.0f, 0.0f, -steadyEarthForce * Time.deltaTime, Space.Self);
+                }
             }
+
+            if (SceneManager.GetActiveScene().name == "Level_3")
+            {
+                modelHolder.Rotate(0.0f, 0.0f, Input.GetAxis("Horizontal") * tiltMoonPower * Time.deltaTime * counterMoonTilt, Space.Self);
+                //modelHolder.Rotate(0.0f, Input.GetAxis("Horizontal"), 0.0f * tiltMoonPower * Time.deltaTime * counterMoonTilt, Space.Self);
+
+                if (Input.GetKey(KeyCode.Keypad4))
+                {
+                    modelHolder.Rotate(0.0f, 0.0f, steadyMoonForce * Time.deltaTime, Space.Self);
+                }
+                if (Input.GetKey(KeyCode.Keypad6))
+                {
+                    modelHolder.Rotate(0.0f, 0.0f, -steadyMoonForce * Time.deltaTime, Space.Self);
+                }
+
+                if (modelHolder.localRotation.z >= 0)
+                {
+                    modelHolder.Rotate(0.0f, 0.0f, -tiltMoonPower * Time.deltaTime, Space.Self);
+                }
+                else
+                {
+                    modelHolder.Rotate(0.0f, 0.0f, tiltMoonPower * Time.deltaTime, Space.Self);
+                }
+            }
+           
 
             if (modelHolder.localRotation.z >= 0)
             {
-                modelHolder.Rotate(0.0f, 0.0f, -tiltMoonPower * Time.deltaTime, Space.Self);
+                modelHolder.Rotate(0.0f, 0.0f, -tiltEarthPower * Time.deltaTime, Space.Self);
             }
             else
             {
-                modelHolder.Rotate(0.0f, 0.0f, tiltMoonPower * Time.deltaTime, Space.Self);
+                modelHolder.Rotate(0.0f, 0.0f, tiltEarthPower * Time.deltaTime, Space.Self);
             }
-        }
-        else if (gameManager.playerIsAbleToMove && SceneManager.GetActiveScene().name == "Level_1")
-        {
-
-            modelHolder.Rotate(0.0f, 0.0f, Input.GetAxis("Horizontal") * tiltEarthPower * Time.deltaTime * counterEarthTilt, Space.Self);
-            //modelHolder.Rotate(0.0f, Input.GetAxis("Horizontal"), 0.0f * tiltEarthPower * Time.deltaTime * counterEarthTilt, Space.Self);
-
-            if (Input.GetKey(KeyCode.Keypad4))
-            {
-                modelHolder.Rotate(0.0f, 0.0f, steadyEarthForce * Time.deltaTime, Space.Self);
-            }
-            if (Input.GetKey(KeyCode.Keypad6))
-            {
-                modelHolder.Rotate(0.0f, 0.0f, -steadyEarthForce * Time.deltaTime, Space.Self);
-            }
-        }
-        if (gameManager.playerIsAbleToMove && SceneManager.GetActiveScene().name == "Level_2")
-        {
-            modelHolder.Rotate(0.0f, 0.0f, Input.GetAxis("Horizontal") * tiltEarthPower * Time.deltaTime * counterEarthTilt, Space.Self);
-            //modelHolder.Rotate(0.0f, Input.GetAxis("Horizontal"), 0.0f * tiltEarthPower * Time.deltaTime * counterEarthTilt, Space.Self);
-
-            if (Input.GetKey(KeyCode.Keypad4))
-            {
-                modelHolder.Rotate(0.0f, 0.0f, steadyEarthForce * Time.deltaTime, Space.Self);
-            }
-            if (Input.GetKey(KeyCode.Keypad6))
-            {
-                modelHolder.Rotate(0.0f, 0.0f, -steadyEarthForce * Time.deltaTime, Space.Self);
-            }
-        }
-
-        if (modelHolder.localRotation.z >= 0)
-        {
-            modelHolder.Rotate(0.0f, 0.0f, -tiltEarthPower * Time.deltaTime, Space.Self);
-        }
-        else
-        {
-            modelHolder.Rotate(0.0f, 0.0f, tiltEarthPower * Time.deltaTime, Space.Self);
         }
     }
+
+        
 
 
 
@@ -194,7 +202,7 @@ public class VelocityBasedMovement : MonoBehaviour
         }
     }
 
-    private void AnimationControl()
+    public void AnimationControl()
     {
         if (Input.GetKeyDown(KeyCode.W))
         {
