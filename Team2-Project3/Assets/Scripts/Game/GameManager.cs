@@ -51,12 +51,13 @@ public class GameManager : MonoBehaviour
 
     void Start()
     { 
-        playerMovement = GameObject.Find("Unicycle").GetComponent<VelocityBasedMovement>();
+        
         audioManager = AudioManager.instance;
         Debug.Log("audioManager instance is equal to " + audioManager);
         InitializeLevelCompletionList();
-        
-       
+        playerIsAbleToMove = true;
+        playerHasFallen = false;
+        playerMovement = GameObject.Find("Unicycle").GetComponent<VelocityBasedMovement>();
 
 
 
