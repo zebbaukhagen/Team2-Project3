@@ -51,7 +51,7 @@ public class Timer : MonoBehaviour
                 UpdateTimerText();
 
             }
-            else if (gameManager.playerIsAbleToMove == false && playerMovement.playerHasFallen == true)
+            else if (gameManager.playerIsAbleToMove == false && gameManager.playerHasFallen == true)
             {
 
                 failed.text = "Time: " + Mathf.Max(0, Mathf.Ceil(timerCurrentTime));
@@ -63,7 +63,7 @@ public class Timer : MonoBehaviour
 
     public void SetLoseTime()
     {
-        if (playerMovement.playerHasFallen == true)
+        if (gameManager.playerHasFallen == true)
         {
             failed.text = Mathf.Floor(minutes).ToString("00") + ":" + Mathf.Floor(seconds).ToString("00");
         }

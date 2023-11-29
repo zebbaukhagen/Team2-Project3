@@ -38,6 +38,7 @@ public class UILevelController : MonoBehaviour
         winPanel.SetActive(false);
         Time.timeScale = 1;
         playerMovement = GameObject.Find("Unicycle").GetComponent<VelocityBasedMovement>();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
 
     }
 
@@ -99,11 +100,15 @@ public class UILevelController : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name == "Level_1")
         {
+            gameManager.playerIsAbleToMove = true;
+            gameManager.playerHasFallen = false;
             LoadScene("Level_2");
            
         }
         else if (SceneManager.GetActiveScene().name == "Level_2")
         {
+            gameManager.playerIsAbleToMove = true;
+            gameManager.playerHasFallen = false;
             LoadScene("Level_3");
            
         }
@@ -123,16 +128,22 @@ public class UILevelController : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().name == "Level_1")
         {
+            gameManager.playerIsAbleToMove = true;
+            gameManager.playerHasFallen = false;
             LoadScene("Level_1");
           
         }
         else if (SceneManager.GetActiveScene().name == "Level_2")
         {
+            gameManager.playerIsAbleToMove = true;
+            gameManager.playerHasFallen = false;
             LoadScene("Level_2");
           
         }
         if (SceneManager.GetActiveScene().name == "Level_3")
         {
+            gameManager.playerIsAbleToMove = true;
+            gameManager.playerHasFallen = false;
             LoadScene("Level_3");
            
         }
