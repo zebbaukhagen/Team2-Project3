@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     public bool playerHasPlayedLevelTwo = false;
     public bool playerHasPlayedLevelThree = false;
     private VelocityBasedMovement playerMovement;
+    public bool playerIsAbleToMove;
 
 
 
@@ -52,6 +53,7 @@ public class GameManager : MonoBehaviour
         audioManager = AudioManager.instance;
         Debug.Log("audioManager instance is equal to " + audioManager);
         InitializeLevelCompletionList();
+        playerIsAbleToMove = true;
         
 
 

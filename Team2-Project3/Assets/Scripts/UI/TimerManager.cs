@@ -36,16 +36,14 @@ public class Timer : MonoBehaviour
         win = GameObject.Find("Unicycle").GetComponent<WinScript>();
         levelController = GameObject.Find("Canvas").GetComponent<UILevelController>();
         playerMovement = GameObject.Find("Unicycle").GetComponent<VelocityBasedMovement>();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         timerCurrentTime = countUpTime;
         UpdateTimerText();
-
-
-
     }
 
     void Update()
     {
-        if (playerMovement.playerCanMove)
+        if (gameManager.playerIsAbleToMove)
         {
             if (timerCurrentTime >= 0.0f)
             {
@@ -53,7 +51,7 @@ public class Timer : MonoBehaviour
                 UpdateTimerText();
 
             }
-            else if (playerMovement.playerCanMove == false && playerMovement.playerHasFallen == true)
+            else if (gameManager.playerIsAbleToMove == false && playerMovement.playerHasFallen == true)
             {
 
                 failed.text = "Time: " + Mathf.Max(0, Mathf.Ceil(timerCurrentTime));

@@ -8733,13 +8733,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cb80a9b4416cda49849508f4cddbcad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  countdownTime: 0
+  countUpTime: 0
   timerCurrentTime: 0
   timer: {fileID: 775635738}
   failed: {fileID: 1032471796}
   completeTime: {fileID: 164005162}
   bestCompletedTime: {fileID: 978874642}
-  bestTime: 0
+  bestPersonalTimeLevelOne: 0
+  bestPersonalTimeLevelTwo: 0
+  bestPersonalTimeLevelThree: 0
 --- !u!114 &1047072839
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8752,7 +8754,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eee093d0595b2e429aa694b9aab955b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseMenu: {fileID: 0}
+  pauseMenu: {fileID: 119673486}
   uiController: {fileID: 1047072837}
 --- !u!1001 &1059950593
 PrefabInstance:

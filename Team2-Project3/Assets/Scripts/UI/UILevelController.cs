@@ -10,6 +10,7 @@ public class UILevelController : MonoBehaviour
     [SerializeField] private GameObject winPanel;
     public bool isPaused = false;
     [SerializeField] private VelocityBasedMovement playerMovement;
+    private GameManager gameManager;
 
     public static UILevelController Instance
     {
@@ -60,13 +61,13 @@ public class UILevelController : MonoBehaviour
             if (isPaused == true)
             {
                 pauseMenuPanel.SetActive(true);
-                playerMovement.playerCanMove = false;
+                gameManager.playerIsAbleToMove = true;
             }
             else
             {
                 isPaused = false;
                 pauseMenuPanel.SetActive(false);
-                playerMovement.playerCanMove = true;
+                gameManager.playerIsAbleToMove = true;
             }
         }
     }
@@ -75,7 +76,7 @@ public class UILevelController : MonoBehaviour
     {
         isPaused = false;
         pauseMenuPanel.SetActive(!pauseMenuPanel.activeSelf);
-        playerMovement.playerCanMove = true;
+        gameManager.playerIsAbleToMove = true;
     }
 
     public void QuitGame()
@@ -99,14 +100,12 @@ public class UILevelController : MonoBehaviour
         if (SceneManager.GetActiveScene().name == "Level_1")
         {
             LoadScene("Level_2");
-            playerMovement.playerCanMove = true;
-            playerMovement.playerHasFallen = false;
+           
         }
         else if (SceneManager.GetActiveScene().name == "Level_2")
         {
             LoadScene("Level_3");
-            playerMovement.playerCanMove = true;
-            playerMovement.playerHasFallen = false;
+           
         }
     }
 
@@ -125,20 +124,17 @@ public class UILevelController : MonoBehaviour
         if (SceneManager.GetActiveScene().name == "Level_1")
         {
             LoadScene("Level_1");
-            playerMovement.playerCanMove = true;
-            playerMovement.playerHasFallen = false;
+          
         }
         else if (SceneManager.GetActiveScene().name == "Level_2")
         {
             LoadScene("Level_2");
-            playerMovement.playerCanMove = true;
-            playerMovement.playerHasFallen = false;
+          
         }
         if (SceneManager.GetActiveScene().name == "Level_3")
         {
             LoadScene("Level_3");
-            playerMovement.playerCanMove = true;
-            playerMovement.playerHasFallen = false;
+           
         }
     }
 }

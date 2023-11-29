@@ -12,21 +12,22 @@ public class VelocityBasedMovement : MonoBehaviour
     public Transform modelHolder;
     //public Transform rotationPiece;
     public CharacterController characterController;
-    public bool playerCanMove = true;
     [SerializeField] private UILevelController levelController;
     private Timer timer;
     public bool playerBeatLevel = false;
     [SerializeField] private Animator wheelAnim;
     [SerializeField] private Animator seatAnim;
+    private GameManager gameManager;
+    public bool playerHasFallen;
 
-    
+
 
 
 
 
     //movement direction local to the holders direction
 
-    public bool playerHasFallen = false;
+
 
 
     //Velocity gained per second. Applies midairMovementMultiplier when we are not grounded:
@@ -36,6 +37,7 @@ public class VelocityBasedMovement : MonoBehaviour
     void Start()
     {
         timer = GameObject.Find("Canvas").GetComponent<Timer>();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -50,7 +52,7 @@ public class VelocityBasedMovement : MonoBehaviour
 
     void Movement()
     {
-        if (playerCanMove && SceneManager.GetActiveScene().name == "Level_3")
+        if (gameManager.playerIsAbleToMove && SceneManager.GetActiveScene().name == "Level_3")
         {
             Debug.Log("I am on Level 3, the Moon Level ");
             float downforce = -0.25f;
@@ -79,9 +81,9 @@ public class VelocityBasedMovement : MonoBehaviour
                 //increasingGravity = false;
             }
         }
-        else if (playerCanMove && SceneManager.GetActiveScene().name == "Level_1" || SceneManager.GetActiveScene().name == "Level_2")
+        else if (gameManager.playerIsAbleToMove && SceneManager.GetActiveScene().name == "Level_1" || SceneManager.GetActiveScene().name == "Level_2")
         {
-            
+
             float moveEarthSpeed = 5.0f;
             float downforce = -1.5f;
             //bool increasingGravity = false;
@@ -107,9 +109,9 @@ public class VelocityBasedMovement : MonoBehaviour
         float counterEarthTilt = 5.0f;
         float steadyEarthForce = 40.0f;
 
-        if (playerCanMove && SceneManager.GetActiveScene().name == "Level_3")
+        if (gameManager.playerIsAbleToMove && SceneManager.GetActiveScene().name == "Level_3")
         {
-            
+
             modelHolder.Rotate(0.0f, 0.0f, Input.GetAxis("Horizontal") * tiltMoonPower * Time.deltaTime * counterMoonTilt, Space.Self);
             //modelHolder.Rotate(0.0f, Input.GetAxis("Horizontal"), 0.0f * tiltMoonPower * Time.deltaTime * counterMoonTilt, Space.Self);
 
@@ -134,9 +136,9 @@ public class VelocityBasedMovement : MonoBehaviour
                 modelHolder.Rotate(0.0f, 0.0f, tiltMoonPower * Time.deltaTime, Space.Self);
             }
         }
-        else if (playerCanMove && SceneManager.GetActiveScene().name == "Level_1" || SceneManager.GetActiveScene().name == "Level_2")
+        else if (gameManager.playerIsAbleToMove && SceneManager.GetActiveScene().name == "Level_1" || SceneManager.GetActiveScene().name == "Level_2")
         {
-            
+
             modelHolder.Rotate(0.0f, 0.0f, Input.GetAxis("Horizontal") * tiltEarthPower * Time.deltaTime * counterEarthTilt, Space.Self);
             //modelHolder.Rotate(0.0f, Input.GetAxis("Horizontal"), 0.0f * tiltEarthPower * Time.deltaTime * counterEarthTilt, Space.Self);
 
@@ -148,7 +150,7 @@ public class VelocityBasedMovement : MonoBehaviour
             {
                 modelHolder.Rotate(0.0f, 0.0f, -steadyEarthForce * Time.deltaTime, Space.Self);
             }
-            
+
 
 
             //if (Input.GetAxis("Vertical") == 0)
@@ -163,29 +165,28 @@ public class VelocityBasedMovement : MonoBehaviour
             }
         }
     }
-    
- 
+
+
     public void PlayerFallsOver()
     {
-        if(SceneManager.GetActiveScene().name == "Level_1" || SceneManager.GetActiveScene().name == "Level_2" || SceneManager.GetActiveScene().name == "Level_3")
-        {
-            if (modelHolder.eulerAngles.z >= 50 && modelHolder.eulerAngles.z <= 300)
-            {
-                playerCanMove = false;
-                playerHasFallen = true;
-                levelController.ActivateLosePanel();
-                timer.SetLoseTime();
 
-            }
+        if (modelHolder.eulerAngles.z >= 50 && modelHolder.eulerAngles.z <= 300)
+        {
+            gameManager.playerIsAbleToMove = false;
+            playerHasFallen = true;
+            levelController.ActivateLosePanel();
+            timer.SetLoseTime();
+
         }
-     
     }
+
+
 
     public void RotateUnicycle()
     {
         float rotationSpeed = 100.0f; // Adjust this to control the rotation speed
 
-        if (playerCanMove)
+        if (gameManager.playerIsAbleToMove)
         {
             float rotationChange = rotationSpeed * Input.GetAxis("Horizontal") * Time.deltaTime;
             transform.Rotate(Vector3.up, rotationChange, Space.Self);    
@@ -194,28 +195,31 @@ public class VelocityBasedMovement : MonoBehaviour
 
     private void AnimationControl()
     {
-        if (Input.GetKeyDown(KeyCode.W))
+        if(gameManager.playerIsAbleToMove)
         {
-            wheelAnim.SetBool("Forward", true);
-            seatAnim.SetBool("SeatForward", true);
-        }
-        else if (Input.GetKeyUp(KeyCode.W))
-        {
-            wheelAnim.SetBool("Forward", false);
-            seatAnim.SetBool("SeatForward", false);
-        }
+            if (Input.GetKeyDown(KeyCode.W))
+            {
+                wheelAnim.SetBool("Forward", true);
+                seatAnim.SetBool("SeatForward", true);
+            }
+            else if (Input.GetKeyUp(KeyCode.W))
+            {
+                wheelAnim.SetBool("Forward", false);
+                seatAnim.SetBool("SeatForward", false);
+            }
 
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            wheelAnim.SetBool("Backward", true);
-            seatAnim.SetBool("SeatBackward", true);
+            if (Input.GetKeyDown(KeyCode.S))
+            {
+                wheelAnim.SetBool("Backward", true);
+                seatAnim.SetBool("SeatBackward", true);
+            }
+            else if (Input.GetKeyUp(KeyCode.S))
+            {
+                wheelAnim.SetBool("Backward", false);
+                seatAnim.SetBool("SeatBackward", false);
+            }
         }
-        else if (Input.GetKeyUp(KeyCode.S))
-        {
-            wheelAnim.SetBool("Backward", false);
-            seatAnim.SetBool("SeatBackward", false);
-        }
-    }
+    } 
 }
 
 
