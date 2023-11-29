@@ -92,9 +92,7 @@ public class VelocityBasedMovement : MonoBehaviour
                 }
                 else
                 {
-
                     downforce = -0.75f;
-
                 }
             }
         }
@@ -159,32 +157,34 @@ public class VelocityBasedMovement : MonoBehaviour
             }
         }
 
-        if (gameManager.isOnMoon)
+        if (gameManager.playerIsAbleToMove)
         {
-            if (modelHolder.localRotation.z >= 0)
+            if (gameManager.isOnMoon)
             {
-                modelHolder.Rotate(0.0f, 0.0f, -tiltMoonPower * Time.deltaTime, Space.Self);
+                if (modelHolder.localRotation.z >= 0)
+                {
+                    modelHolder.Rotate(0.0f, 0.0f, -tiltMoonPower * Time.deltaTime, Space.Self);
+                }
+                else
+                {
+                    modelHolder.Rotate(0.0f, 0.0f, tiltMoonPower * Time.deltaTime, Space.Self);
+                }
             }
-            else
+
+            else if (gameManager.isOnEarth)
             {
-                modelHolder.Rotate(0.0f, 0.0f, tiltMoonPower * Time.deltaTime, Space.Self);
+
+                if (modelHolder.localRotation.z >= 0)
+                {
+                    modelHolder.Rotate(0.0f, 0.0f, -tiltEarthPower * Time.deltaTime, Space.Self);
+                }
+                else
+                {
+                    modelHolder.Rotate(0.0f, 0.0f, tiltEarthPower * Time.deltaTime, Space.Self);
+                }
+
             }
         }
-
-        else if (gameManager.isOnEarth)
-        {
-
-            if (modelHolder.localRotation.z >= 0)
-            {
-                modelHolder.Rotate(0.0f, 0.0f, -tiltEarthPower * Time.deltaTime, Space.Self);
-            }
-            else
-            {
-                modelHolder.Rotate(0.0f, 0.0f, tiltEarthPower * Time.deltaTime, Space.Self);
-            }
-
-        }
-
     }
     
 
