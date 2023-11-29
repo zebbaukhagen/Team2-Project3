@@ -83,7 +83,7 @@ public class VelocityBasedMovement : MonoBehaviour
         {
             Debug.Log("Not Level 3");
             float moveEarthSpeed = 2.0f;
-            float downforce = -0.75f;
+            float downforce = -1.5f;
             //bool increasingGravity = false;
 
             Vector3 forwardDirection = modelHolder.forward;

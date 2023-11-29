@@ -63,7 +63,7 @@ public class Timer : MonoBehaviour
     {
         if (playerMovement.playerBeatLevel == true)
         {
-            failed.text = Mathf.Floor(minutes).ToString("00") + ":" + Mathf.Floor(seconds).ToString("00");
+            completeTime.text = Mathf.Floor(minutes).ToString("00") + ":" + Mathf.Floor(seconds).ToString("00");
             Debug.Log(minutes);
             Debug.Log(seconds);
         }
