@@ -14,11 +14,15 @@ public class GameManager : MonoBehaviour
     private Timer timer;
     //private float levelCompleteTime;
     //private float BestCompletionTime;
-    public float bestTime1;
-    public float bestTime2;
+    public float bestTime1;//level One Times
+    public float bestTime2;//level One Times
+    public float bestTime3;//level Two Times
+    public float bestTime4;//level Two Times
+    public float bestTime5;//level Three Times
+    public float bestTime6;//level Three Times
     public bool playerHasPlayedLevelOne = false;
     public bool playerHasPlayedLevelTwo = false;
-    public bool playersHavePlayedLevelThree = false;
+    public bool playerHasPlayedLevelThree = false;
     //[SerializeField] private GameObject playerCollisions;
 
     

@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Timer : MonoBehaviour
 {
@@ -10,15 +11,21 @@ public class Timer : MonoBehaviour
     public TMP_Text failed;
     public TMP_Text completeTime;
     public TMP_Text bestCompletedTime;
-    public float bestPersonalTime;
+    public float bestPersonalTimeLevelOne;
+    public float bestPersonalTimeLevelTwo;
+    public float bestPersonalTimeLevelThree;
     private UILevelController levelController;
     private VelocityBasedMovement playerMovement;
     private WinScript win;
     private GameManager gameManager;
     int minutes;
     int seconds;
-    int bestMinutes;
-    int bestSeconds;
+    int bestMinutes1;
+    int bestSeconds1;
+    int bestMinutes2;
+    int bestSeconds2;
+    int bestMinutes3;
+    int bestSeconds3;
 
 
 
@@ -76,7 +83,18 @@ public class Timer : MonoBehaviour
     {
         if (playerMovement.playerBeatLevel == true)
         {
-            bestCompletedTime.text = Mathf.Floor(bestMinutes).ToString("00") + ":" + Mathf.Floor(bestSeconds).ToString("00");
+            if(SceneManager.GetActiveScene().name == "Level_1")
+            {
+                bestCompletedTime.text = Mathf.Floor(bestMinutes1).ToString("00") + ":" + Mathf.Floor(bestSeconds1).ToString("00");
+            }
+            else if (SceneManager.GetActiveScene().name == "Level_2")
+            {
+                bestCompletedTime.text = Mathf.Floor(bestMinutes2).ToString("00") + ":" + Mathf.Floor(bestSeconds2).ToString("00");
+            }
+            if (SceneManager.GetActiveScene().name == "Level_3")
+            {
+                bestCompletedTime.text = Mathf.Floor(bestMinutes3).ToString("00") + ":" + Mathf.Floor(bestSeconds3).ToString("00");
+            }
         }
     }
 
@@ -87,12 +105,28 @@ public class Timer : MonoBehaviour
         timer.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
-    public void UpdateBestTimeText()
+    public void UpdateBestTimeTextLevelOne()
     {
         
-        bestMinutes = Mathf.FloorToInt(bestPersonalTime / 60);
-        bestSeconds = Mathf.FloorToInt(bestPersonalTime % 60);
-        bestCompletedTime.text = string.Format("{0:00}:{1:00}", bestMinutes, bestSeconds); ;
+        bestMinutes1 = Mathf.FloorToInt(bestPersonalTimeLevelOne / 60);
+        bestSeconds1 = Mathf.FloorToInt(bestPersonalTimeLevelOne % 60);
+        bestCompletedTime.text = string.Format("{0:00}:{1:00}", bestMinutes1, bestSeconds1); 
+    }
+
+    public void UpdateBestTimeTextLevelTwo()
+    {
+
+        bestMinutes2 = Mathf.FloorToInt(bestPersonalTimeLevelTwo / 60);
+        bestSeconds2 = Mathf.FloorToInt(bestPersonalTimeLevelTwo % 60);
+        bestCompletedTime.text = string.Format("{0:00}:{1:00}", bestMinutes2, bestSeconds2); 
+    }
+
+    public void UpdateBestTimeTextLevelThree()
+    {
+
+        bestMinutes3 = Mathf.FloorToInt(bestPersonalTimeLevelThree / 60);
+        bestSeconds3 = Mathf.FloorToInt(bestPersonalTimeLevelThree % 60);
+        bestCompletedTime.text = string.Format("{0:00}:{1:00}", bestMinutes2, bestSeconds2); 
     }
 }
 
