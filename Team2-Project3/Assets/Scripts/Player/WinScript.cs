@@ -99,7 +99,7 @@ public class WinScript : MonoBehaviour
                 if (!gameManager.playerHasPlayedLevelThree)
                 {
                     gameManager.bestTime5 = timer.timerCurrentTime;
-                    timer.bestPersonalTimeLevelOne = gameManager.bestTime5;
+                    timer.bestPersonalTimeLevelThree = gameManager.bestTime5;
                 }
                 else if (gameManager.playerHasPlayedLevelThree)
                 {
