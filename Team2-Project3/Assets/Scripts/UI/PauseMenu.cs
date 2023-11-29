@@ -7,20 +7,18 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    //[SerializeField] private PlayerController playerController;
     [SerializeField] private GameObject pauseMenu;
-    //[SerializeField] private GameObject settingsMenu;
-    //[SerializeField] private TMP_Text levelPrompt;
     [SerializeField] private UILevelController uiController;
     private static bool togglePauseGame;
     [SerializeField] private static bool pauseGame;
-    //[SerializeField] private AudioManager audio;
+    private GameManager gameManager;
+ 
     
     
     // Start is called before the first frame update
     void Start()
     {
-        //settingsMenu.SetActive(false);
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -51,13 +49,10 @@ public class PauseMenu : MonoBehaviour
     public void ResumeGame()
     {
         pauseMenu.SetActive(false);
+        gameManager.playerIsAbleToMove = true;
         Time.timeScale = 1;
     }
 
-    public void OpenSettings()
-    {
-        //settingsMenu.SetActive(!settingsMenu.activeSelf);
-    }
 
     public void BackToMainMenu()
     {

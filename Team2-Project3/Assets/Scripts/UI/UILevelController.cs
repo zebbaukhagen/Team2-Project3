@@ -63,7 +63,7 @@ public class UILevelController : MonoBehaviour
             if (isPaused == true)
             {
                 pauseMenuPanel.SetActive(true);
-                gameManager.playerIsAbleToMove = true;
+                gameManager.playerIsAbleToMove = false;
             }
             else
             {

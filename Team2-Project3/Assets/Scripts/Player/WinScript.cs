@@ -61,25 +61,25 @@ public class WinScript : MonoBehaviour
             levelController.ActivateWinPanel();
             playerMovement.playerBeatLevel = true;
 
-            if (SceneManager.GetActiveScene().name == "Level_1")
+            if (SceneManager.GetActiveScene().name == "Level_2")
             {
-                if (!gameManager.playerHasPlayedLevelOne)
+                if (!gameManager.playerHasPlayedLevelTwo)
                 {
                     gameManager.bestTime3 = timer.timerCurrentTime;
                     timer.bestPersonalTimeLevelTwo = gameManager.bestTime3;
                 }
-                else if (gameManager.playerHasPlayedLevelOne)
+                else if (gameManager.playerHasPlayedLevelTwo)
                 {
                     gameManager.bestTime4 = timer.timerCurrentTime;
 
                     if (gameManager.bestTime3 > gameManager.bestTime4)
                     {
                         gameManager.bestTime3 = gameManager.bestTime4;
-                        timer.bestPersonalTimeLevelOne = gameManager.bestTime4;
+                        timer.bestPersonalTimeLevelTwo = gameManager.bestTime4;
                     }
                     else
                     {
-                        timer.bestPersonalTimeLevelOne = gameManager.bestTime3;
+                        timer.bestPersonalTimeLevelTwo = gameManager.bestTime3;
                     }
                 }
                 gameManager.playerHasPlayedLevelTwo = true;
@@ -94,7 +94,7 @@ public class WinScript : MonoBehaviour
             levelController.ActivateWinPanel();
             playerMovement.playerBeatLevel = true;
 
-            if (SceneManager.GetActiveScene().name == "Level_1")
+            if (SceneManager.GetActiveScene().name == "Level_3")
             {
                 if (!gameManager.playerHasPlayedLevelThree)
                 {
@@ -108,11 +108,11 @@ public class WinScript : MonoBehaviour
                     if (gameManager.bestTime5 > gameManager.bestTime6)
                     {
                         gameManager.bestTime5 = gameManager.bestTime6;
-                        timer.bestPersonalTimeLevelOne = gameManager.bestTime5;
+                        timer.bestPersonalTimeLevelThree = gameManager.bestTime5;
                     }
                     else
                     {
-                        timer.bestPersonalTimeLevelOne = gameManager.bestTime5;
+                        timer.bestPersonalTimeLevelThree = gameManager.bestTime5;
                     }
                 }
                 gameManager.playerHasPlayedLevelThree = true;
