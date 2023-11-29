@@ -12,8 +12,9 @@ public class GameManager : MonoBehaviour
     private bool levelTwoCompleted = false;
     private bool levelThreeCompleted = false;
     private Timer timer;
-    private float levelCompleteTime;
-    private float BestCompletionTime;
+    //private float levelCompleteTime;
+    //private float BestCompletionTime;
+    public float bestTime;
     //[SerializeField] private GameObject playerCollisions;
     
 
@@ -24,7 +25,7 @@ public class GameManager : MonoBehaviour
     }
     private void Awake()
     {
-        Debug.Log("GameManager awakened."); 
+         
         // Ensure only one instance of GameManager exists
         if (instance == null)
         {

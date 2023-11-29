@@ -5,16 +5,20 @@ using UnityEngine.UI;
 public class Timer : MonoBehaviour
 {
     public float countdownTime = 0.0f; // 2 minutes in seconds
-    public float currentTime;
+    public float timerCurrentTime;
     [SerializeField] private TMP_Text timer;
     public TMP_Text failed;
     public TMP_Text completeTime;
+    public TMP_Text bestCompletedTime;
     private UILevelController levelController;
     private VelocityBasedMovement playerMovement;
     private WinScript win;
+    private GameManager gameManager;
     int minutes;
     int seconds;
-    public float bestTime;
+    int bestMinutes;
+    int bestSeconds;
+        
 
 
 
@@ -24,7 +28,9 @@ public class Timer : MonoBehaviour
         win = GameObject.Find("Unicycle").GetComponent<WinScript>();
         levelController = GameObject.Find("Canvas").GetComponent<UILevelController>();
         playerMovement = GameObject.Find("Unicycle").GetComponent<VelocityBasedMovement>();
-        currentTime = countdownTime;
+        timerCurrentTime = countdownTime;
+        bestSeconds = Mathf.FloorToInt(gameManager.bestTime % 60);
+        bestMinutes = Mathf.FloorToInt(gameManager.bestTime / 60);
         UpdateTimerText();
         
     }
@@ -33,16 +39,16 @@ public class Timer : MonoBehaviour
     {
         if(playerMovement.playerCanMove)
         {
-            if (currentTime >= 0.0f)
+            if (timerCurrentTime >= 0.0f)
             {
-                currentTime += Time.deltaTime; // Countdown by the time passed since the last frame
+                timerCurrentTime += Time.deltaTime; // Countdown by the time passed since the last frame
                 UpdateTimerText();
 
             }
             else if (playerMovement.playerCanMove == false && playerMovement.playerHasFallen == true)
             {
 
-                failed.text = "Time: " + Mathf.Max(0, Mathf.Ceil(currentTime));
+                failed.text = "Time: " + Mathf.Max(0, Mathf.Ceil(timerCurrentTime));
                 
 
             }
@@ -54,8 +60,7 @@ public class Timer : MonoBehaviour
         if(playerMovement.playerHasFallen == true)
         {
             failed.text =  Mathf.Floor(minutes).ToString("00") + ":" + Mathf.Floor(seconds).ToString("00");
-            Debug.Log(minutes);
-            Debug.Log(seconds);
+           
         }
     }
 
@@ -64,16 +69,24 @@ public class Timer : MonoBehaviour
         if (playerMovement.playerBeatLevel == true)
         {
             completeTime.text = Mathf.Floor(minutes).ToString("00") + ":" + Mathf.Floor(seconds).ToString("00");
-            Debug.Log(minutes);
-            Debug.Log(seconds);
+        }
+    }
+
+    public void SetBestTime()
+    {
+        if (playerMovement.playerBeatLevel == true)
+        {
+            bestCompletedTime.text = Mathf.Floor(bestMinutes).ToString("00") + ":" + Mathf.Floor(bestSeconds).ToString("00");
         }
     }
 
 
+
+
     void UpdateTimerText()
     {
-        minutes = Mathf.FloorToInt(currentTime / 60);
-        seconds = Mathf.FloorToInt(currentTime % 60);
+        minutes = Mathf.FloorToInt(timerCurrentTime / 60);
+        seconds = Mathf.FloorToInt(timerCurrentTime % 60);
         timer.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
