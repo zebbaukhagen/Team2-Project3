@@ -24,7 +24,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private VelocityBasedMovement playerMovement;
     public bool playerIsAbleToMove;
     public bool playerHasFallen;
-
+    public bool isOnEarth;
+    public bool isOnMoon;
 
 
 
