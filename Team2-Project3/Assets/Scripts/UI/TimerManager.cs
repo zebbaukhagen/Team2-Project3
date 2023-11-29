@@ -16,7 +16,9 @@ public class Timer : MonoBehaviour
     private GameManager gameManager;
     int minutes;
     int seconds;
-    public float bestTime = 0 ;
+    int bestMinutes;
+    int bestSeconds;
+        
 
 
 
@@ -27,6 +29,8 @@ public class Timer : MonoBehaviour
         levelController = GameObject.Find("Canvas").GetComponent<UILevelController>();
         playerMovement = GameObject.Find("Unicycle").GetComponent<VelocityBasedMovement>();
         timerCurrentTime = countdownTime;
+        bestSeconds = Mathf.FloorToInt(gameManager.bestTime % 60);
+        bestMinutes = Mathf.FloorToInt(gameManager.bestTime / 60);
         UpdateTimerText();
         
     }
@@ -56,8 +60,7 @@ public class Timer : MonoBehaviour
         if(playerMovement.playerHasFallen == true)
         {
             failed.text =  Mathf.Floor(minutes).ToString("00") + ":" + Mathf.Floor(seconds).ToString("00");
-            Debug.Log(minutes);
-            Debug.Log(seconds);
+           
         }
     }
 
@@ -73,7 +76,7 @@ public class Timer : MonoBehaviour
     {
         if (playerMovement.playerBeatLevel == true)
         {
-            bestCompletedTime.text = Mathf.Floor(minutes).ToString("00") + ":" + Mathf.Floor(seconds).ToString("00");
+            bestCompletedTime.text = Mathf.Floor(bestMinutes).ToString("00") + ":" + Mathf.Floor(bestSeconds).ToString("00");
         }
     }
 

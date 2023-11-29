@@ -14,8 +14,6 @@ public class GameManager : MonoBehaviour
     private Timer timer;
     //private float levelCompleteTime;
     //private float BestCompletionTime;
-
-    public float currentTime;
     public float bestTime;
     //[SerializeField] private GameObject playerCollisions;
     
