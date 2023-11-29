@@ -82,7 +82,7 @@ public class VelocityBasedMovement : MonoBehaviour
         else if (playerCanMove && SceneManager.GetActiveScene().name == "Level_1" || SceneManager.GetActiveScene().name == "Level_2")
         {
             Debug.Log("Not Level 3");
-            float moveEarthSpeed = 2.0f;
+            float moveEarthSpeed = 5.0f;
             float downforce = -1.5f;
             //bool increasingGravity = false;
 

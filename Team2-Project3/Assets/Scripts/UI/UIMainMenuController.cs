@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class UIMainMenuController : MonoBehaviour
 {
     [SerializeField] private GameObject instructionsPanel;
-    [SerializeField] private GameObject settingsMenu;
     [SerializeField] private GameObject CreditsMenu;
     private static UIMainMenuController instance;
 
@@ -31,7 +30,7 @@ public class UIMainMenuController : MonoBehaviour
     private void Start()
     {
         instructionsPanel.SetActive(false);
-        settingsMenu.SetActive(false);
+       
 
         
     }
@@ -52,10 +51,6 @@ public class UIMainMenuController : MonoBehaviour
         instructionsPanel.SetActive(!instructionsPanel.activeSelf);
     }
 
-    public void OpenSettings()
-    {
-        settingsMenu.SetActive(!settingsMenu.activeSelf);
-    }
 
     public void OpenCreditPanel()
     {

@@ -10,6 +10,7 @@ public class Timer : MonoBehaviour
     public TMP_Text failed;
     public TMP_Text completeTime;
     public TMP_Text bestCompletedTime;
+    public float bestPersonalTime;
     private UILevelController levelController;
     private VelocityBasedMovement playerMovement;
     private WinScript win;
@@ -18,7 +19,7 @@ public class Timer : MonoBehaviour
     int seconds;
     int bestMinutes;
     int bestSeconds;
-        
+
 
 
 
@@ -29,15 +30,16 @@ public class Timer : MonoBehaviour
         levelController = GameObject.Find("Canvas").GetComponent<UILevelController>();
         playerMovement = GameObject.Find("Unicycle").GetComponent<VelocityBasedMovement>();
         timerCurrentTime = countdownTime;
-        bestSeconds = Mathf.FloorToInt(gameManager.bestTime % 60);
-        bestMinutes = Mathf.FloorToInt(gameManager.bestTime / 60);
-        UpdateTimerText();
         
+        UpdateTimerText();
+
+
+
     }
 
     void Update()
     {
-        if(playerMovement.playerCanMove)
+        if (playerMovement.playerCanMove)
         {
             if (timerCurrentTime >= 0.0f)
             {
@@ -49,7 +51,7 @@ public class Timer : MonoBehaviour
             {
 
                 failed.text = "Time: " + Mathf.Max(0, Mathf.Ceil(timerCurrentTime));
-                
+
 
             }
         }
@@ -57,10 +59,10 @@ public class Timer : MonoBehaviour
 
     public void SetLoseTime()
     {
-        if(playerMovement.playerHasFallen == true)
+        if (playerMovement.playerHasFallen == true)
         {
-            failed.text =  Mathf.Floor(minutes).ToString("00") + ":" + Mathf.Floor(seconds).ToString("00");
-           
+            failed.text = Mathf.Floor(minutes).ToString("00") + ":" + Mathf.Floor(seconds).ToString("00");
+
         }
     }
 
@@ -80,9 +82,6 @@ public class Timer : MonoBehaviour
         }
     }
 
-
-
-
     void UpdateTimerText()
     {
         minutes = Mathf.FloorToInt(timerCurrentTime / 60);
@@ -90,4 +89,13 @@ public class Timer : MonoBehaviour
         timer.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
+    public void UpdateBestTimeText()
+    {
+        bestPersonalTime = gameManager.bestTime;
+        bestMinutes = Mathf.FloorToInt(bestPersonalTime / 60);
+        bestSeconds = Mathf.FloorToInt(bestPersonalTime % 60);
+        bestCompletedTime.text = string.Format("{0:00}:{1:00}", bestMinutes, bestSeconds); ;
+    }
 }
+
+

@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
         // Ensure only one instance of GameManager exists
         if (instance == null)
         {
+            bestTime = 0;
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
@@ -39,12 +40,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void Start()
+    void Start()
     {
         audioManager = AudioManager.instance;
         Debug.Log("audioManager instance is equal to " + audioManager);
         InitializeLevelCompletionList();
         
+          
         
     }
 
