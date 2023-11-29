@@ -14,10 +14,9 @@ public class Timer : MonoBehaviour
     public float bestPersonalTimeLevelOne;
     public float bestPersonalTimeLevelTwo;
     public float bestPersonalTimeLevelThree;
-    private UILevelController levelController;
-    private VelocityBasedMovement playerMovement;
-    private WinScript win;
-    private GameManager gameManager;
+    [SerializeField] private UILevelController levelController;
+    [SerializeField] private VelocityBasedMovement playerMovement;
+    [SerializeField] private GameManager gameManager;
     int minutes;
     int seconds;
     int bestMinutes1;
@@ -33,7 +32,7 @@ public class Timer : MonoBehaviour
 
     void Start()
     {
-        win = GameObject.Find("Unicycle").GetComponent<WinScript>();
+        //win = GameObject.Find("Unicycle").GetComponent<WinScript>();
         levelController = GameObject.Find("Canvas").GetComponent<UILevelController>();
         playerMovement = GameObject.Find("Unicycle").GetComponent<VelocityBasedMovement>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();

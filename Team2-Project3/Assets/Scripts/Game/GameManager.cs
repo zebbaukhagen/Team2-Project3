@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     private bool levelOneCompleted = false;
     private bool levelTwoCompleted = false;
     private bool levelThreeCompleted = false;
-    private Timer timer;
+    [SerializeField] private Timer timer;
     public float bestTime1;//level One Times
     public float bestTime2;//level One Times
     public float bestTime3;//level Two Times
@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
     public bool playerHasPlayedLevelOne = false;
     public bool playerHasPlayedLevelTwo = false;
     public bool playerHasPlayedLevelThree = false;
-    private VelocityBasedMovement playerMovement;
+    [SerializeField] private VelocityBasedMovement playerMovement;
     public bool playerIsAbleToMove;
     public bool playerHasFallen;
 
@@ -50,13 +50,13 @@ public class GameManager : MonoBehaviour
     }
 
     void Start()
-    {
+    { 
+        playerMovement = GameObject.Find("Unicycle").GetComponent<VelocityBasedMovement>();
         audioManager = AudioManager.instance;
         Debug.Log("audioManager instance is equal to " + audioManager);
         InitializeLevelCompletionList();
-        playerIsAbleToMove = true;
-        playerHasFallen = false;
         
+       
 
 
 

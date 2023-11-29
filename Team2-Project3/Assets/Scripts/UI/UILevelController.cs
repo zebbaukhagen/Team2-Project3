@@ -10,7 +10,7 @@ public class UILevelController : MonoBehaviour
     [SerializeField] private GameObject winPanel;
     public bool isPaused = false;
     [SerializeField] private VelocityBasedMovement playerMovement;
-    private GameManager gameManager;
+    [SerializeField] GameManager gameManager;
 
     public static UILevelController Instance
     {
@@ -37,8 +37,9 @@ public class UILevelController : MonoBehaviour
         losePanel.SetActive(false);
         winPanel.SetActive(false);
         Time.timeScale = 1;
-        playerMovement = GameObject.Find("Unicycle").GetComponent<VelocityBasedMovement>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        playerMovement = GameObject.Find("Unicycle").GetComponent<VelocityBasedMovement>();
+        
 
     }
 

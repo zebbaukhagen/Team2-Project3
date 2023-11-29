@@ -13,17 +13,18 @@ public class VelocityBasedMovement : MonoBehaviour
     //public Transform rotationPiece;
     public CharacterController characterController;
     [SerializeField] private UILevelController levelController;
-    private Timer timer;
+    [SerializeField] private Timer timer;
     public bool playerBeatLevel = false;
-    [SerializeField] private Animator wheelAnim;
-    [SerializeField] private Animator seatAnim;
-    private GameManager gameManager;
+    private Animator wheelAnim;
+    private Animator seatAnim;
+    [SerializeField] private GameManager gameManager;
 
     // Start is called before the first frame update
     void Start()
     {
         timer = GameObject.Find("Canvas").GetComponent<Timer>();
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        levelController = GameObject.Find("Canvas").GetComponent<UILevelController>();
     }
 
     // Update is called once per frame

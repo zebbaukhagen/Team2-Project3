@@ -5,10 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class WinScript : MonoBehaviour
 {
-    private UILevelController levelController;
-    private VelocityBasedMovement playerMovement;
-    private Timer timer;
-    private GameManager gameManager;
+    [SerializeField] private UILevelController levelController;
+    [SerializeField] private VelocityBasedMovement playerMovement;
+    [SerializeField] private Timer timer;
+    [SerializeField] private GameManager gameManager;
 
 
     void Start()
