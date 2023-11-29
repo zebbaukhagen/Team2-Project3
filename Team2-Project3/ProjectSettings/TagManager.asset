@@ -6,6 +6,8 @@ TagManager:
   tags:
   - LevelOneComplete
   - Ground
+  - LevelTwoComplete
+  - LevelThreeComplete
   layers:
   - Default
   - TransparentFX

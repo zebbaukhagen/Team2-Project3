@@ -55,62 +55,71 @@ public class WinScript : MonoBehaviour
                 timer.SetBestTime();
             }
         }
-
-
-
-        else if (SceneManager.GetActiveScene().name == "Level_2")
+        else if (other.gameObject.tag == "LevelTwoComplete")
         {
-            if (!gameManager.playerHasPlayedLevelTwo)
-            {
-                gameManager.bestTime3 = timer.timerCurrentTime;
-                timer.bestPersonalTimeLevelTwo = gameManager.bestTime3;
-            }
-            else if (gameManager.playerHasPlayedLevelTwo)
-            {
-                gameManager.bestTime4 = timer.timerCurrentTime;
+            gameManager.playerIsAbleToMove = false;
+            levelController.ActivateWinPanel();
+            playerMovement.playerBeatLevel = true;
 
-                if (gameManager.bestTime3 > gameManager.bestTime4)
+            if (SceneManager.GetActiveScene().name == "Level_1")
+            {
+                if (!gameManager.playerHasPlayedLevelOne)
                 {
-                    gameManager.bestTime3 = gameManager.bestTime4;
+                    gameManager.bestTime3 = timer.timerCurrentTime;
                     timer.bestPersonalTimeLevelTwo = gameManager.bestTime3;
                 }
-                else
+                else if (gameManager.playerHasPlayedLevelOne)
                 {
-                    timer.bestPersonalTimeLevelTwo = gameManager.bestTime1;
+                    gameManager.bestTime4 = timer.timerCurrentTime;
+
+                    if (gameManager.bestTime3 > gameManager.bestTime4)
+                    {
+                        gameManager.bestTime3 = gameManager.bestTime4;
+                        timer.bestPersonalTimeLevelOne = gameManager.bestTime4;
+                    }
+                    else
+                    {
+                        timer.bestPersonalTimeLevelOne = gameManager.bestTime3;
+                    }
                 }
+                gameManager.playerHasPlayedLevelTwo = true;
+                timer.UpdateBestTimeTextLevelTwo();
+                timer.SetWinTime();
+                timer.SetBestTime();
             }
-            gameManager.playerHasPlayedLevelTwo = true;
-            timer.UpdateBestTimeTextLevelTwo();
-            timer.SetWinTime();
-            timer.SetBestTime();
         }
-
-
-        if (SceneManager.GetActiveScene().name == "Level_3")
+        if (other.gameObject.tag == "LevelThreeComplete")
         {
-            if (!gameManager.playerHasPlayedLevelThree)
-            {
-                gameManager.bestTime5 = timer.timerCurrentTime;
-                timer.bestPersonalTimeLevelThree = gameManager.bestTime5;
-            }
-            else if (gameManager.playerHasPlayedLevelThree)
-            {
-                gameManager.bestTime6 = timer.timerCurrentTime;
+            gameManager.playerIsAbleToMove = false;
+            levelController.ActivateWinPanel();
+            playerMovement.playerBeatLevel = true;
 
-                if (gameManager.bestTime5 > gameManager.bestTime6)
+            if (SceneManager.GetActiveScene().name == "Level_1")
+            {
+                if (!gameManager.playerHasPlayedLevelThree)
                 {
-                    gameManager.bestTime5 = gameManager.bestTime6;
-                    timer.bestPersonalTimeLevelThree = gameManager.bestTime5;
+                    gameManager.bestTime5 = timer.timerCurrentTime;
+                    timer.bestPersonalTimeLevelOne = gameManager.bestTime5;
                 }
-                else
+                else if (gameManager.playerHasPlayedLevelThree)
                 {
-                    timer.bestPersonalTimeLevelThree = gameManager.bestTime1;
+                    gameManager.bestTime6 = timer.timerCurrentTime;
+
+                    if (gameManager.bestTime5 > gameManager.bestTime6)
+                    {
+                        gameManager.bestTime5 = gameManager.bestTime6;
+                        timer.bestPersonalTimeLevelOne = gameManager.bestTime5;
+                    }
+                    else
+                    {
+                        timer.bestPersonalTimeLevelOne = gameManager.bestTime5;
+                    }
                 }
+                gameManager.playerHasPlayedLevelThree = true;
+                timer.UpdateBestTimeTextLevelThree();
+                timer.SetWinTime();
+                timer.SetBestTime();
             }
-            gameManager.playerHasPlayedLevelThree = true;
-            timer.UpdateBestTimeTextLevelThree();
-            timer.SetWinTime();
-            timer.SetBestTime();
         }
     }
 }
