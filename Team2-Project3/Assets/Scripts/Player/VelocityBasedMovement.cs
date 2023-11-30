@@ -38,19 +38,6 @@ public class VelocityBasedMovement : MonoBehaviour
         Tilt();
         PlayerFallsOver();
         AnimationControl();
-
-        if (Input.GetKey(KeyCode.W))
-        {
-            audioSource.Play();
-        }
-        else if (Input.GetKey(KeyCode.S))
-        {
-            audioSource.Play();
-        }
-        else
-        {
-            audioSource.Stop();
-        }
     }
 
     void Movement()
@@ -230,22 +217,26 @@ public class VelocityBasedMovement : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.W))
         {
+            audioSource.Play();
             wheelAnim.SetBool("Forward", true);
             seatAnim.SetBool("SeatForward", true);
         }
         else if (Input.GetKeyUp(KeyCode.W))
         {
+            audioSource.Stop();
             wheelAnim.SetBool("Forward", false);
             seatAnim.SetBool("SeatForward", false);
         }
 
         if (Input.GetKeyDown(KeyCode.S))
         {
+            audioSource.Play();
             wheelAnim.SetBool("Backward", true);
             seatAnim.SetBool("SeatBackward", true);
         }
         else if (Input.GetKeyUp(KeyCode.S))
         {
+            audioSource.Stop();
             wheelAnim.SetBool("Backward", false);
             seatAnim.SetBool("SeatBackward", false);
         }
