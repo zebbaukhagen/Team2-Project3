@@ -18,6 +18,7 @@ public class VelocityBasedMovement : MonoBehaviour
     [SerializeField] private Animator wheelAnim;
     [SerializeField] private Animator seatAnim;
     [SerializeField] private GameManager gameManager;
+    private AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +27,7 @@ public class VelocityBasedMovement : MonoBehaviour
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         levelController = GameObject.Find("Canvas").GetComponent<UILevelController>();
         gameManager.playerIsAbleToMove = true;
+        audioSource = GameObject.Find("Uni_Audio").GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -36,7 +38,19 @@ public class VelocityBasedMovement : MonoBehaviour
         Tilt();
         PlayerFallsOver();
         AnimationControl();
-    }
+
+        if (Input.GetKey(KeyCode.W))
+        {
+            audioSource.Play();
+        }
+        else if(Input.GetKey(KeyCode.S)) 
+        {
+            audioSource.Play();
+        }
+        else
+        {
+            audioSource.Stop();
+        }
 
     void Movement()
     {
