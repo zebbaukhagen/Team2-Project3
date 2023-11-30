@@ -56,20 +56,23 @@ public class UILevelController : MonoBehaviour
 
     public void OpenPauseMenu()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if(gameManager.playerIsAbleToMove)
         {
-            isPaused = !isPaused;
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                isPaused = !isPaused;
 
-            if (isPaused == true)
-            {
-                pauseMenuPanel.SetActive(true);
-                gameManager.playerIsAbleToMove = false;
-            }
-            else
-            {
-                isPaused = false;
-                pauseMenuPanel.SetActive(false);
-                gameManager.playerIsAbleToMove = true;
+                if (isPaused == true)
+                {
+                    pauseMenuPanel.SetActive(true);
+                    gameManager.playerIsAbleToMove = false;
+                }
+                else
+                {
+                    isPaused = false;
+                    pauseMenuPanel.SetActive(false);
+                    gameManager.playerIsAbleToMove = true;
+                }
             }
         }
     }
