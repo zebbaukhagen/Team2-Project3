@@ -45,7 +45,7 @@ public class VelocityBasedMovement : MonoBehaviour
             if (SceneManager.GetActiveScene().name == "Level_1")
             {
                 float moveEarthSpeed = 2.0f;
-                float downforce = -1.5f;
+                float downforce = -25.0f;
 
                 Vector3 forwardDirection = modelHolder.forward;
                 forwardDirection.y = 0.0f;
@@ -74,7 +74,7 @@ public class VelocityBasedMovement : MonoBehaviour
 
             if (SceneManager.GetActiveScene().name == "Level_3")
             {
-                float downforce = -0.25f;
+                float downforce = -0.40f;
                 Vector3 forwardDirection = modelHolder.forward;
                 forwardDirection.y = 0.0f;
                 float moveMoonSpeed = 5.0f;
@@ -83,16 +83,16 @@ public class VelocityBasedMovement : MonoBehaviour
                 movement.y = downforce;
                 characterController.Move(movement * Time.deltaTime * moveMoonSpeed);
 
-                if (!characterController.isGrounded)
+                if (!characterController.isGrounded && Input.GetKeyDown(KeyCode.W))
                 {
                     if (characterController.velocity.y < 0)
                     {
-                        downforce -= 5.0f * Time.deltaTime;
+                        downforce -= 10.0f * Time.deltaTime;
                     }
                 }
                 else
                 {
-                    downforce = -0.75f;
+                    downforce = -0.40f;
                 }
             }
         }
