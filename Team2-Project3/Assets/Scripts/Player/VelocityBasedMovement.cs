@@ -43,7 +43,7 @@ public class VelocityBasedMovement : MonoBehaviour
         {
             audioSource.Play();
         }
-        else if(Input.GetKey(KeyCode.S)) 
+        else if (Input.GetKey(KeyCode.S))
         {
             audioSource.Play();
         }
@@ -51,6 +51,7 @@ public class VelocityBasedMovement : MonoBehaviour
         {
             audioSource.Stop();
         }
+    }
 
     void Movement()
     {
@@ -111,6 +112,7 @@ public class VelocityBasedMovement : MonoBehaviour
             }
         }
     }
+
 
     public void Tilt()
     {
@@ -200,7 +202,7 @@ public class VelocityBasedMovement : MonoBehaviour
             }
         }
     }
-    
+
 
     public void PlayerFallsOver()
     {
@@ -220,7 +222,7 @@ public class VelocityBasedMovement : MonoBehaviour
         if (gameManager.playerIsAbleToMove)
         {
             float rotationChange = rotationSpeed * Input.GetAxis("Horizontal") * Time.deltaTime;
-            transform.Rotate(Vector3.up, rotationChange, Space.Self);    
+            transform.Rotate(Vector3.up, rotationChange, Space.Self);
         }
     }
 
@@ -247,8 +249,9 @@ public class VelocityBasedMovement : MonoBehaviour
             wheelAnim.SetBool("Backward", false);
             seatAnim.SetBool("SeatBackward", false);
         }
-    } 
+    }
 }
+
 
 
 
