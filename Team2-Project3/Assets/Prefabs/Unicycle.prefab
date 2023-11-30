@@ -49,11 +49,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   modelHolder: {fileID: 1670384747533881512}
   characterController: {fileID: 416072074563915033}
-  playerCanMove: 1
-  levelController: {fileID: 0}
+  playerBeatLevel: 0
   wheelAnim: {fileID: 2987738936051899648}
   seatAnim: {fileID: 5321205173521556284}
-  playerHasFallen: 0
+  gameManager: {fileID: 0}
 --- !u!143 &416072074563915033
 CharacterController:
   m_ObjectHideFlags: 0
@@ -260,7 +259,7 @@ GameObject:
   - component: {fileID: 4157263705934840714}
   - component: {fileID: 6707186708911501531}
   m_Layer: 0
-  m_Name: Audio Source
+  m_Name: Uni_Audio
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -561,6 +560,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 351a60a3af912354b9a72b504a2a004b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelController: {fileID: 0}
+  playerMovement: {fileID: 0}
+  timer: {fileID: 0}
+  gameManager: {fileID: 0}
 --- !u!95 &2987738936051899648
 Animator:
   serializedVersion: 5
