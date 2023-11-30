@@ -15,8 +15,8 @@ public class VelocityBasedMovement : MonoBehaviour
     private UILevelController levelController;
     private Timer timer;
     public bool playerBeatLevel = false;
-    private Animator wheelAnim;
-    private Animator seatAnim;
+    [SerializeField] private Animator wheelAnim;
+    [SerializeField] private Animator seatAnim;
     [SerializeField] private GameManager gameManager;
 
     // Start is called before the first frame update
