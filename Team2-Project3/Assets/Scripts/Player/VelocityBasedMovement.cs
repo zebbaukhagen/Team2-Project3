@@ -44,7 +44,7 @@ public class VelocityBasedMovement : MonoBehaviour
         {
             if (SceneManager.GetActiveScene().name == "Level_1")
             {
-                float moveEarthSpeed = 5.0f;
+                float moveEarthSpeed = 2.0f;
                 float downforce = -1.5f;
 
                 Vector3 forwardDirection = modelHolder.forward;
@@ -59,7 +59,7 @@ public class VelocityBasedMovement : MonoBehaviour
             else if (SceneManager.GetActiveScene().name == "Level_2")
             {
 
-                float moveEarthSpeed = 5.0f;
+                float moveEarthSpeed = 2.0f;
                 float downforce = -1.5f;
                 //bool increasingGravity = false;
 
