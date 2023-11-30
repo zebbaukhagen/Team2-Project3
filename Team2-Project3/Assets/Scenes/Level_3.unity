@@ -14688,6 +14688,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 40181885}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1925342654 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1670384747533881512, guid: 2271c90147edb864c82fdd1f39411f4f,
+    type: 3}
+  m_PrefabInstance: {fileID: 2005940091}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1930850996 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3672593671311999227, guid: 336ca433ad572284bac619fb1f44c1cf,
@@ -15507,28 +15513,18 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 416072074563915033, guid: 2271c90147edb864c82fdd1f39411f4f,
         type: 3}
-      propertyPath: m_Height
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 416072074563915033, guid: 2271c90147edb864c82fdd1f39411f4f,
-        type: 3}
       propertyPath: m_Radius
-      value: 0.25
+      value: 0.28
       objectReference: {fileID: 0}
     - target: {fileID: 416072074563915033, guid: 2271c90147edb864c82fdd1f39411f4f,
         type: 3}
       propertyPath: m_Center.y
-      value: 0.3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 537968413838775125, guid: 2271c90147edb864c82fdd1f39411f4f,
         type: 3}
       propertyPath: m_Name
       value: Unicycle
-      objectReference: {fileID: 0}
-    - target: {fileID: 1670384747533881512, guid: 2271c90147edb864c82fdd1f39411f4f,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.323
       objectReference: {fileID: 0}
     - target: {fileID: 3637105944216794688, guid: 2271c90147edb864c82fdd1f39411f4f,
         type: 3}
@@ -15588,7 +15584,7 @@ PrefabInstance:
     - target: {fileID: 6269548207822457966, guid: 2271c90147edb864c82fdd1f39411f4f,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 61.158
+      value: 61.501
       objectReference: {fileID: 0}
     - target: {fileID: 6269548207822457966, guid: 2271c90147edb864c82fdd1f39411f4f,
         type: 3}
@@ -15639,7 +15635,7 @@ PrefabInstance:
         type: 3}
       propertyPath: modelHolder
       value: 
-      objectReference: {fileID: 2005940092}
+      objectReference: {fileID: 1925342654}
     - target: {fileID: 7754619145462661200, guid: 2271c90147edb864c82fdd1f39411f4f,
         type: 3}
       propertyPath: rotationSpeed
@@ -15679,12 +15675,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1768438666}
   m_SourcePrefab: {fileID: 100100000, guid: 2271c90147edb864c82fdd1f39411f4f, type: 3}
---- !u!4 &2005940092 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3357776553132414732, guid: 2271c90147edb864c82fdd1f39411f4f,
-    type: 3}
-  m_PrefabInstance: {fileID: 2005940091}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2012830112
 GameObject:
   m_ObjectHideFlags: 0
