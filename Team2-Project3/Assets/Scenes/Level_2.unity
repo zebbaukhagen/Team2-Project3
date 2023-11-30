@@ -4377,7 +4377,7 @@ MonoBehaviour:
   timer: {fileID: 2058746223}
   failed: {fileID: 993621601}
   completeTime: {fileID: 1121197681}
-  bestCompletedTime: {fileID: 1843120603}
+  bestCompletedTime: {fileID: 1549774050}
   bestPersonalTimeLevelOne: 0
   bestPersonalTimeLevelTwo: 0
   bestPersonalTimeLevelThree: 0
@@ -8002,7 +8002,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1245068565
 MonoBehaviour:
   m_ObjectHideFlags: 0
